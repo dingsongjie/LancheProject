@@ -50,10 +50,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lanche.Cache\Lanche.Cache.csproj">
-      <Project>{f25f7b9c-cad3-4ddb-97a8-c7ed9cbf3b89}</Project>
-      <Name>Lanche.Cache</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Lanche.Core\Lanche.Core.csproj">
       <Project>{8b1be22d-74ae-415b-92e3-341a6d3ef871}</Project>
       <Name>Lanche.Core</Name>
