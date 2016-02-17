@@ -95,7 +95,6 @@
     <Compile Include="Reflection\ReflectionHelper.cs" />
     <Compile Include="Reflection\TypeHelper.cs" />
     <Compile Include="Thread\AsyncHelper.cs" />
-    <Compile Include="Thread\InternalAsyncHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

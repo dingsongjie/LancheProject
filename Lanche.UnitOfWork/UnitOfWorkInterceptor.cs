@@ -1,9 +1,11 @@
 ﻿using Castle.DynamicProxy;
 using Lanche.Core.Thread;
+using Lanche.UnitOfWork.Thread;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace Lanche.UnitOfWork
 {
