@@ -80,9 +80,9 @@
     <Compile Include="TestApplicationBiz.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Lanche.Cache\Lanche.Cached.csproj">
+    <ProjectReference Include="..\..\Lanche.Cache\Lanche.Cache.csproj">
       <Project>{ead43306-0a4f-4bdf-b03f-e00f8c46345f}</Project>
-      <Name>Lanche.Cached</Name>
+      <Name>Lanche.Cache</Name>
     </ProjectReference>
     <ProjectReference Include="..\EntityFrameworkTest\EntityFrameworkTest.csproj">
       <Project>{afb6983e-d4ac-4129-97b1-cc2a929f0f34}</Project>
