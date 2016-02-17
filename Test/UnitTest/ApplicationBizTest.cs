@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using Lanche.UnitOfWork;
 using System.IO;
-using Lanche.Core.Domain.Repository.Paging;
+using Lanche.Core.Repository.Paging;
 using System.ComponentModel;
 using Lanche.Entityframework.UnitOfWork;
 using UnitTest.Helper;
@@ -34,7 +34,7 @@ namespace UnitTest
         public void GetInPaging()
         {
             TestApplicationBiz Service = _iocManager.Resolve<TestApplicationBiz>();
-            PagingDTO<Students> dto = Service.GetInPaging(1, 1, true, "Age");
+            PagingEntity<Students> dto = Service.GetInPaging(1, 1, true, "Age");
          
         }
         [TestMethod]

@@ -69,16 +69,14 @@
     <Compile Include="Dependency\DependencyLifeStyle.cs" />
     <Compile Include="Dependency\Disposed\IDisposeWapper.cs" />
     <Compile Include="Dependency\IIocManager.cs" />
-    <Compile Include="Dependency\IIocRegistrar.cs" />
     <Compile Include="Dependency\IocManager.cs" />
     <Compile Include="Dependency\ISingleDependency.cs" />
-    <Compile Include="Dependency\ITransientDependency.cs" />
-    <Compile Include="Domain\Repository\IOutOfUnitOfWork.cs" />
-    <Compile Include="Domain\Repository\IRepositoryWithEntity.cs" />
-    <Compile Include="Domain\Repository\IRepository.cs" />
-    <Compile Include="Domain\Repository\Paging\PagingDTO.cs" />
-    <Compile Include="Domain\Repository\RepositoryBase.cs" />
-    <Compile Include="Extensions\EventHandlerExtensions.cs" />
+    <Compile Include="Dependency\IMultipleDependency.cs" />
+    <Compile Include="Repository\IOutOfUnitOfWork.cs" />
+    <Compile Include="Repository\IRepositoryWithEntity.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\Paging\PagingDTO.cs" />
+    <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Module\DefaultModuleFinder.cs" />
     <Compile Include="Module\DefaultModuleManager.cs" />
     <Compile Include="Module\DependsOnAttribute.cs" />
@@ -101,9 +99,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Excepiton\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

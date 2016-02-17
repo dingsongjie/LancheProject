@@ -19,6 +19,11 @@ namespace Lanche.Core.Dependency
         /// <summary>
         /// 多实例
         /// </summary>
-        Multiple
+        Multiple,
+        /// <summary>
+        /// 每个web请求
+        /// </summary>
+        PerWebRequest
+
     }
 }

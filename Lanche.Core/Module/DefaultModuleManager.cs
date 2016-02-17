@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Lanche.Core.Module
 {
+    /// <summary>
+    /// 模块化操作
+    /// </summary>
     internal class DefaultModuleManager:IModuleManager
     {
         

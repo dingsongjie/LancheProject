@@ -22,7 +22,9 @@ namespace Lanche.UnitOfWork
            
         }
       
-
+        /// <summary>
+        /// 模块初始化前写入 UnitOfWorkInstaller
+        /// </summary>
         public override void PreInitialize()
         {
             IocManager.IocContainer.Install(new UnitOfWorkInstaller());

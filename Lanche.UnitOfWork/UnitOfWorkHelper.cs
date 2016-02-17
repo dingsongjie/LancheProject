@@ -1,6 +1,6 @@
 ﻿
 using Lanche.Core.Application;
-using Lanche.Core.Domain.Repository;
+using Lanche.Core.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

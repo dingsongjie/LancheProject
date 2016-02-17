@@ -65,11 +65,7 @@ namespace Lanche.Core.Dependency
         /// <returns></returns>
         bool IsRegistered<T>();
 
-        /// <summary>
-        /// 注册整个程序集
-        /// </summary>
-        /// <param name="assembly">Assembly </param>
-        void RegisterAssemblyByConvention(Assembly assembly);
+       
 
 
         /// <summary>

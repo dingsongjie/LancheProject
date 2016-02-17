@@ -34,7 +34,7 @@ namespace Lanche.Core.Dependency
         {
             IocContainer = new WindsorContainer();
 
-
+            
             //注册自己  保持单例
             IocContainer.Register(
                 Component.For<IocManager, IIocManager>().LifestyleSingleton().UsingFactoryMethod(() => this)
@@ -161,29 +161,27 @@ namespace Lanche.Core.Dependency
         public void Dispose()
         {
             IocContainer.Dispose();
+            
         }
 
         private static ComponentRegistration<T> ApplyLifestyle<T>(ComponentRegistration<T> registration, DependencyLifeStyle lifeStyle)
             where T : class
         {
+            
             switch (lifeStyle)
             {
+                    
                 case DependencyLifeStyle.Multiple:
                     return registration.LifestyleTransient();
                 case DependencyLifeStyle.Singleton:
                     return registration.LifestyleSingleton();
+                case DependencyLifeStyle.PerWebRequest:
+                    return registration.LifestylePerWebRequest();
                 default:
                     return registration;
             }
         }
-        /// <summary>
-        /// 注册而整个程序集
-        /// </summary>
-        /// <param name="assembly"></param>
-        public void RegisterAssemblyByConvention(Assembly assembly)
-        {
-            IocContainer.Install(FromAssembly.Instance(assembly));
-        }
+      
         /// <summary>
         /// 如果没有注册则 注册 ，否则 直接返回
         /// </summary>

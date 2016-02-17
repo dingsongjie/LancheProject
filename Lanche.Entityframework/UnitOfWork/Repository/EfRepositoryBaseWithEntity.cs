@@ -1,4 +1,4 @@
-﻿using Lanche.Core.Domain.Repository;
+﻿using Lanche.Core.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using EntityFramework.BulkInsert.Extensions;
 using System.Threading.Tasks;
 using System.Reflection;
-using Lanche.Core.Domain.Repository.Paging;
+using Lanche.Core.Repository.Paging;
 
 namespace Lanche.Entityframework.UnitOfWork.Repository
 {
@@ -169,7 +169,7 @@ namespace Lanche.Entityframework.UnitOfWork.Repository
         {
             return GetAll().Where(filter).UpdateAsync(update);
         }
-        public override async Task<Core.Domain.Repository.Paging.PagingDTO<TEntity>> GetInPagingAsync(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, bool sort = true)
+        public override async Task<Core.Repository.Paging.PagingEntity<TEntity>> GetInPagingAsync(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, bool sort = true)
         {
             List<TEntity> entities;
             var count = this.Count(query);
@@ -205,7 +205,7 @@ namespace Lanche.Entityframework.UnitOfWork.Repository
 
             }
 
-            var result = new PagingDTO<TEntity>()
+            var result = new PagingEntity<TEntity>()
             {
                 Entities = entities,
                 MaxPage = maxPage,

@@ -1,6 +1,6 @@
 ﻿using Lanche.Core.Application;
-using Lanche.Core.Domain.Repository;
-using Lanche.Core.Domain.Repository.Paging;
+using Lanche.Core.Repository;
+using Lanche.Core.Repository.Paging;
 using Lanche.Entityframework.UnitOfWork.Repository;
 using Lanche.UnitOfWork;
 using System;
@@ -21,7 +21,7 @@ namespace UnitTest
             _studentRepository = studentRepository;
             _uowManger = uowManger;
         }
-        public virtual PagingDTO<Students> GetInPaging(int pageIndex, int PageSize, bool sort, string orderProperty)
+        public virtual PagingEntity<Students> GetInPaging(int pageIndex, int PageSize, bool sort, string orderProperty)
         {
            
             return _studentRepository.GetInPaging(m => m.IsDeleted == false, pageIndex, PageSize, orderProperty, sort);

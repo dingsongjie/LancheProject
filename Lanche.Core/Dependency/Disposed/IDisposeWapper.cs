@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Lanche.DynamicWebApi.Controller
 {
+    /// <summary>
+    /// 用于包装从IocManager中 手动 resolve 出来的对象
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class IDisposeWapper<T>:IDisposable where T:class
     {
         private readonly IIocManager _manager;
@@ -16,9 +20,10 @@ namespace Lanche.DynamicWebApi.Controller
             _manager = manager;
             Object = obj;
         }
+        
         public void Dispose()
         {
-            _manager.Release(Object);
+            _manager.Release(Object);  /// release 即可
         }
     }
 }
