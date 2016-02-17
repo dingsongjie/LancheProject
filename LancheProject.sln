@@ -50,7 +50,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lanche.Owin", "Lanche.Owin\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lanche.SinalR", "Lanche.SinalR\Lanche.SinalR.csproj", "{3B497C70-570E-4F5A-9F31-0E2207CBA9E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lanche.Cached", "Lanche.dfwqdwqdwqd\Lanche.Cached.csproj", "{EAD43306-0A4F-4BDF-B03F-E00F8C46345F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lanche.Cached", "Lanche.Cache\Lanche.Cached.csproj", "{EAD43306-0A4F-4BDF-B03F-E00F8C46345F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
