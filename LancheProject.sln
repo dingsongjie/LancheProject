@@ -46,7 +46,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MqReceiveConsoleTest", "Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lanche.Web.Mvc", "Lanche.Mvc\Lanche.Web.Mvc.csproj", "{7E4F5863-F4A9-4CB4-9B9C-F906AE0B5644}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lanche.Cache", "Lanche.Cache\Lanche.Cache.csproj", "{F25F7B9C-CAD3-4DDB-97A8-C7ED9CBF3B89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lanche.CacheBase", "Lanche.Cache\Lanche.CacheBase.csproj", "{F25F7B9C-CAD3-4DDB-97A8-C7ED9CBF3B89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
