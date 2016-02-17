@@ -25,7 +25,7 @@ namespace Lanche.Entityframework
         {
             IocManager.Register(
                typeof(IDbContextProvider<>),
-                    typeof(UnitOfWorkDbContextProvider<>), DependencyLifeStyle.Transient
+                    typeof(UnitOfWorkDbContextProvider<>), DependencyLifeStyle.Multiple
 
                     );
           

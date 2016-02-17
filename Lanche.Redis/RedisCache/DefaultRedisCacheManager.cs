@@ -14,7 +14,7 @@ namespace Lanche.Redis.RedisCache
         public DefaultRedisCacheManager(IIocManager iocManager, ICachingConfiguration configuration)
             : base(iocManager, configuration)
         {
-            IocManager.RegisterIfNot<RedisCache>(DependencyLifeStyle.Transient);
+            IocManager.RegisterIfNot<RedisCache>(DependencyLifeStyle.Multiple);
         }
         protected override ICache CreateCacheImplementation(string name)
         {

@@ -33,7 +33,7 @@ namespace Lanche.Entityframework.UnitOfWork.Repository
                     iocManager.Register(
                         genericRepositoryType,
                         implType,
-                        DependencyLifeStyle.Transient
+                        DependencyLifeStyle.Multiple
                         );
                 }
 

@@ -19,6 +19,6 @@ namespace Lanche.Core.Dependency
         /// <summary>
         /// 多实例
         /// </summary>
-        Transient
+        Multiple
     }
 }

@@ -31,7 +31,7 @@ namespace Lanche.MongoDB.Repositories
                    iocManager.Register(
                        genericRepositoryType,
                        implType,
-                       DependencyLifeStyle.Transient
+                       DependencyLifeStyle.Multiple
                        );
                }
 

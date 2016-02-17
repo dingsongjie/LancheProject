@@ -18,7 +18,7 @@ namespace Lanche.MemoryCache
         public DefaultMemoryCacheManager(IIocManager iocManager, ICachingConfiguration configuration)
             : base(iocManager, configuration)
         {
-            IocManager.RegisterIfNot<DefaultMemoryCache>(DependencyLifeStyle.Transient);
+            IocManager.RegisterIfNot<DefaultMemoryCache>(DependencyLifeStyle.Multiple);
         }
 
         protected override ICache CreateCacheImplementation(string name)
