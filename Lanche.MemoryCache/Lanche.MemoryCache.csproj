@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lanche.Cache\Lanche.Cache.csproj">
-      <Project>{138a6faa-c46e-44a6-a5fe-9f2939bfc598}</Project>
+      <Project>{f25f7b9c-cad3-4ddb-97a8-c7ed9cbf3b89}</Project>
       <Name>Lanche.Cache</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lanche.Core\Lanche.Core.csproj">

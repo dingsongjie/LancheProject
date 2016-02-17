@@ -38,11 +38,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -80,13 +80,13 @@
     <Compile Include="TestApplicationBiz.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Lanche.Cache\Lanche.Cache.csproj">
+      <Project>{f25f7b9c-cad3-4ddb-97a8-c7ed9cbf3b89}</Project>
+      <Name>Lanche.Cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EntityFrameworkTest\EntityFrameworkTest.csproj">
       <Project>{afb6983e-d4ac-4129-97b1-cc2a929f0f34}</Project>
       <Name>EntityFrameworkTest</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Lanche.Cache\Lanche.Cache.csproj">
-      <Project>{138a6faa-c46e-44a6-a5fe-9f2939bfc598}</Project>
-      <Name>Lanche.Cache</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Lanche.Core\Lanche.Core.csproj">
       <Project>{8b1be22d-74ae-415b-92e3-341a6d3ef871}</Project>
