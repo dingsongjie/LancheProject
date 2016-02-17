@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1D626B
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lanche.DynamicWebApi", "Lanche.Dynamic\Lanche.DynamicWebApi.csproj", "{340217FB-497C-43F1-BAF1-C9566B5C8E2E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lanche.DynamicWebApi", "Lanche.DynamicWebApi\Lanche.DynamicWebApi.csproj", "{340217FB-497C-43F1-BAF1-C9566B5C8E2E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lanche.Web", "Lanche.Web\Lanche.Web.csproj", "{4CF7E464-310F-4E04-8FD6-1D1C4A0E8B6B}"
 EndProject

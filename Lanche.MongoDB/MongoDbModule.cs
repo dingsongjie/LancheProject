@@ -19,7 +19,7 @@ namespace Lanche.MongoDB
         public ITypeFinder TypeFinder { get; set; }
         public override void PreInitialize()
         {
-            IocManager.IocContainer.Install(new MongoDbInstaller());
+          
             base.PreInitialize();
         }
         public override void Initialize()

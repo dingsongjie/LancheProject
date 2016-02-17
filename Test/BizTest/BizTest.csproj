@@ -92,7 +92,7 @@
       <Project>{8b1be22d-74ae-415b-92e3-341a6d3ef871}</Project>
       <Name>Lanche.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Lanche.Dynamic\Lanche.DynamicWebApi.csproj">
+    <ProjectReference Include="..\..\Lanche.DynamicWebApi\Lanche.DynamicWebApi.csproj">
       <Project>{340217fb-497c-43f1-baf1-c9566b5c8e2e}</Project>
       <Name>Lanche.DynamicWebApi</Name>
     </ProjectReference>
