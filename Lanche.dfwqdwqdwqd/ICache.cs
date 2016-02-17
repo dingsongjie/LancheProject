@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Lanche.Cache
 {
     /// <summary>
-    /// 缓存接口
+    /// 缓存接口.
     /// </summary>
     public interface ICache : IDisposable
     {
