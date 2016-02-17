@@ -226,9 +226,9 @@
       <Project>{8c63d28c-1bd6-4199-965d-355bad49b34f}</Project>
       <Name>Lanche.MessageQueue</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Lanche.Mvc\Lanche.Web.Mvc.csproj">
+    <ProjectReference Include="..\..\Lanche.Mvc\Lanche.Web.Mvcs.csproj">
       <Project>{7e4f5863-f4a9-4cb4-9b9c-f906ae0b5644}</Project>
-      <Name>Lanche.Web.Mvc</Name>
+      <Name>Lanche.Web.Mvcs</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Lanche.RabbitMq\Lanche.RabbitMq.csproj">
       <Project>{b6b1b3a8-8857-4b55-8470-ba8f83d346b7}</Project>
