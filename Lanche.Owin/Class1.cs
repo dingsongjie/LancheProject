@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary2
+namespace Lanche.Owin
 {
-    public class Classss
+    public class Classs1
     {
     }
 }
