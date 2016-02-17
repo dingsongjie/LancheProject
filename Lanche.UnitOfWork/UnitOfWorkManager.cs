@@ -12,7 +12,7 @@ namespace Lanche.UnitOfWork
     /// </summary>
     public class UnitOfWorkManager : IUnitOfWorkManager
     {
-        private readonly IIocResolver _iocResolver;
+        private readonly IIocManager _iocManager;
         private readonly IUnitOfWorkProvider _currentUnitOfWorkProvider;
         private readonly IUnitOfWorkDefaultOptions _defaultOptions;
 
@@ -22,11 +22,11 @@ namespace Lanche.UnitOfWork
         }
 
         public UnitOfWorkManager(
-            IIocResolver iocResolver,
+            IIocManager iocManager,
             IUnitOfWorkProvider currentUnitOfWorkProvider,
             IUnitOfWorkDefaultOptions defaultOptions)
         {
-            _iocResolver = iocResolver;
+            _iocManager = iocManager;
             _currentUnitOfWorkProvider = currentUnitOfWorkProvider;
             _defaultOptions = defaultOptions;
         }
@@ -50,7 +50,7 @@ namespace Lanche.UnitOfWork
                 throw new Exception("有一个工作单元未被释放，可能存在内存泄露？");
             }
 
-            var uow = _iocResolver.Resolve<IUnitOfWork>();
+            var uow = _iocManager.Resolve<IUnitOfWork>();
 
             uow.Completed += (sender, args) =>
             {
@@ -64,7 +64,7 @@ namespace Lanche.UnitOfWork
 
             uow.Disposed += (sender, args) =>
             {
-                _iocResolver.Release(uow);
+                _iocManager.Release(uow);
             };
 
             uow.Begin(options);

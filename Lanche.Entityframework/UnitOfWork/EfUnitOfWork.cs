@@ -18,17 +18,17 @@ namespace Lanche.Entityframework.UnitOfWork
     {
         protected readonly IDictionary<Type, DbContext> ActiveDbContexts;
 
-        protected IIocResolver IocResolver { get; private set; }
+        protected IIocManager IocManager { get; private set; }
         
         protected TransactionScope CurrentTransaction;
 
         /// <summary>
         /// 构造函数
         /// </summary>
-        public EfUnitOfWork(IIocResolver iocResolver, IUnitOfWorkDefaultOptions defaultOptions)
+        public EfUnitOfWork(IIocManager iocManager, IUnitOfWorkDefaultOptions defaultOptions)
             : base(defaultOptions)
         {
-            IocResolver = iocResolver;
+            IocManager = iocManager;
             ActiveDbContexts = new Dictionary<Type, DbContext>();
         }
 
@@ -117,13 +117,13 @@ namespace Lanche.Entityframework.UnitOfWork
 
         protected virtual TDbContext Resolve<TDbContext>()
         {
-            return IocResolver.Resolve<TDbContext>();
+            return IocManager.Resolve<TDbContext>();
         }
 
         protected virtual void Release(DbContext dbContext)
         {
             dbContext.Dispose();
-            IocResolver.Release(dbContext);
+            IocManager.Release(dbContext);
         }
 
         protected override async Task CompleteUowAsync()

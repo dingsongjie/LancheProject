@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Lanche.DynamicWebApi.Controller.Dynamic
 {
-    public class ErrorInfo : ITransientDependency
+    public class ErrorInfo : IMultipleDependency
     {
         /// <summary>
         /// 此处自定义信息

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lanche.MongoDB.DbContext
 {
-    public abstract class MongoDbContext :Lanche.Core.Dependency.ITransientDependency
+    public abstract class MongoDbContext :Lanche.Core.Dependency.IMultipleDependency
     {
         private static string CONNECTION_STRING;
         public string ConnectionString { get { return CONNECTION_STRING; } }

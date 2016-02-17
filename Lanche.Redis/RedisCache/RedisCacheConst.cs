@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lanche.Redis.RedisCache
 {
-    public class RedisCacheConst : ITransientDependency
+    public class RedisCacheConst : IMultipleDependency
     {
        public string RedisConnectionName = "Lanche.Redis.Cache";
     }

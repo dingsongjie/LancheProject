@@ -17,7 +17,7 @@ namespace Lanche.Core.Dependency
                     manager.IocContainer.Register(
                         Classes.FromAssembly(m)
                             .IncludeNonPublicTypes()
-                            .BasedOn<ITransientDependency>()
+                            .BasedOn<IMultipleDependency>()
                             .WithService.Self()
                             .WithService.DefaultInterfaces()
                             .LifestyleTransient()

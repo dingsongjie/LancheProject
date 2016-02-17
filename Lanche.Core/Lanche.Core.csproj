@@ -70,7 +70,6 @@
     <Compile Include="Dependency\Disposed\IDisposeWapper.cs" />
     <Compile Include="Dependency\IIocManager.cs" />
     <Compile Include="Dependency\IIocRegistrar.cs" />
-    <Compile Include="Dependency\IIocResolver.cs" />
     <Compile Include="Dependency\IocManager.cs" />
     <Compile Include="Dependency\ISingleDependency.cs" />
     <Compile Include="Dependency\ITransientDependency.cs" />

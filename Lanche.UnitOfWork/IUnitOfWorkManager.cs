@@ -8,7 +8,7 @@ using System.Transactions;
 
 namespace Lanche.UnitOfWork
 {
-    public interface IUnitOfWorkManager : ITransientDependency
+    public interface IUnitOfWorkManager : IMultipleDependency
     {
         /// <summary>
         /// 当前工作单元.

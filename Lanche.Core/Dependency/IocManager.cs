@@ -37,7 +37,7 @@ namespace Lanche.Core.Dependency
 
             //注册自己
             IocContainer.Register(
-                Component.For<IocManager, IIocManager, IIocRegistrar, IIocResolver>().UsingFactoryMethod(() => this)
+                Component.For<IocManager, IIocManager>().UsingFactoryMethod(() => this)
                 );
         }
       
