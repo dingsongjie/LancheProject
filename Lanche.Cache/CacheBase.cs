@@ -166,5 +166,51 @@ namespace Lanche.Cache
         {
 
         }
+
+
+
+        public virtual TValue GetOrDefault<TValue>(string key)
+        {
+            var value = this.GetOrDefault(key.ToString());
+            if (value == null)
+            {
+                return default(TValue);
+            }
+
+            return (TValue)value;
+        }
+
+        public virtual async Task<TValue> GetOrDefaultAsync<TValue>(string key)
+        {
+            var value = await this.GetOrDefaultAsync(key);
+            if (value == null)
+            {
+                return default(TValue);
+            }
+
+            return (TValue)value;
+        }
+
+        public virtual TValue GetOrDefault<TKey, TValue>(TKey key)
+        {
+            var value = this.GetOrDefault(key.ToString());
+            if (value == null)
+            {
+                return default(TValue);
+            }
+
+            return (TValue)value;
+        }
+
+        public virtual async Task<TValue> GetOrDefaultAsync<TKey, TValue>(TKey key)
+        {
+            var value = await this.GetOrDefaultAsync(key.ToString());
+            if (value == null)
+            {
+                return default(TValue);
+            }
+
+            return (TValue)value;
+        }
     }
 }

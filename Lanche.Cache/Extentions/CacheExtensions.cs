@@ -10,7 +10,7 @@ namespace Lanche.Cache
     /// ICache 扩展方法
     /// </summary>
     public static class CacheExtensions
-    {     
+    {
         /// <summary>
         /// 转换成 typed 的 cache
         /// </summary>
@@ -35,7 +35,18 @@ namespace Lanche.Cache
         {
             return (TValue)cache.GetOrCreate(key.ToString(), (k) => (object)factory(key));
         }
-
+        /// <summary>
+        /// 根据key 获取缓存的对象,如果没找到 则创建 并返回该对象
+        /// </summary>
+        /// <typeparam name="TValue">value type</typeparam>
+        /// <param name="cache">cache</param>
+        /// <param name="key">key string</param>
+        /// <param name="factory">创建缓存的方法</param>
+        /// <returns>value</returns>
+        public static TValue GetOrCreate<TValue>(this ICache cache, string key, Func<string, TValue> factory)
+        {
+            return (TValue)cache.GetOrCreate(key, (k) => (object)factory(key));
+        }
 
         /// <summary>
         /// 根据key 获取缓存的对象,如果没找到 则创建 并返回该对象 async
@@ -56,43 +67,95 @@ namespace Lanche.Cache
 
             return (TValue)value;
         }
-
         /// <summary>
-        /// 根据 key查找 缓存的对象，如果没找到 返回null
+        /// 根据key 获取缓存的对象,如果没找到 则创建 并返回该对象 async
         /// </summary>
-        /// <typeparam name="TKey">key type</typeparam>
         /// <typeparam name="TValue">value type</typeparam>
-        /// <param name="cache">icache</param>
-        /// <param name="key"> key</param>
+        /// <param name="cache">cache</param>
+        /// <param name="key">key string</param>
+        /// <param name="factory">创建缓存的方法</param>
         /// <returns>value</returns>
-
-        public static TValue GetOrDefault<TKey, TValue>(this ICache cache, TKey key)
+        public static async Task<TValue> GetOrCreateAsync<TValue>(this ICache cache, string key, Func<string, Task<TValue>> factory)
         {
-            var value = cache.GetOrDefault(key.ToString());
-            if (value == null)
+            var value = await cache.GetOrCreateAsync(key, async (keyAsString) =>
             {
-                return default(TValue);
-            }
+                var v = await factory(key);
+                return (object)v;
+            });
 
             return (TValue)value;
         }
-        /// <summary>
-        /// 根据 key查找 缓存的对象，如果没找到 返回null async
-        /// </summary>
-        /// <typeparam name="TKey">key type</typeparam>
-        /// <typeparam name="TValue">value type</typeparam>
-        /// <param name="cache">icache</param>
-        /// <param name="key"> key</param>
-        /// <returns>value task</returns>
-        public static async Task<TValue> GetOrDefaultAsync<TKey, TValue>(this ICache cache, TKey key)
-        {
-            var value = await cache.GetOrDefaultAsync(key.ToString());
-            if (value == null)
-            {
-                return default(TValue);
-            }
 
-            return (TValue)value;
-        }
+        ///// <summary>
+        ///// 根据 key查找 缓存的对象，如果没找到 返回null
+        ///// </summary>
+        ///// <typeparam name="TKey">key type</typeparam>
+        ///// <typeparam name="TValue">value type</typeparam>
+        ///// <param name="cache">icache</param>
+        ///// <param name="key"> key</param>
+        ///// <returns>value</returns>
+
+        //public static TValue GetOrDefault<TKey, TValue>(this ICache cache, TKey key)
+        //{
+        //    var value = cache.GetOrDefault(key.ToString());
+        //    if (value == null)
+        //    {
+        //        return default(TValue);
+        //    }
+
+        //    return (TValue)value;
+        //}
+        ///// <summary>
+        ///// 根据 key查找 缓存的对象，如果没找到 返回null
+        ///// </summary>
+        ///// <typeparam name="TValue">返回的类型</typeparam>
+        ///// <param name="cache">cache</param>
+        ///// <param name="key">key string</param>
+        ///// <returns></returns>
+        //public static TValue GetOrDefault<TValue>(this ICache cache, string key)
+        //{
+        //    var value = cache.GetOrDefault(key);
+        //    if (value == null)
+        //    {
+        //        return default(TValue);
+        //    }
+
+        //    return (TValue)value;
+        //}
+        ///// <summary>
+        ///// 根据 key查找 缓存的对象，如果没找到 返回null async
+        ///// </summary>
+        ///// <typeparam name="TKey">key type</typeparam>
+        ///// <typeparam name="TValue">value type</typeparam>
+        ///// <param name="cache">icache</param>
+        ///// <param name="key"> key</param>
+        ///// <returns>value task</returns>
+        //public static async Task<TValue> GetOrDefaultAsync<TKey, TValue>(this ICache cache, TKey key)
+        //{
+        //    var value = await cache.GetOrDefaultAsync(key.ToString());
+        //    if (value == null)
+        //    {
+        //        return default(TValue);
+        //    }
+
+        //    return (TValue)value;
+        //}
+        ///// <summary>
+        /////  根据 key查找 缓存的对象，如果没找到 返回null async
+        ///// </summary>
+        ///// <typeparam name="TValue">返回类型</typeparam>
+        ///// <param name="cache">cache</param>
+        ///// <param name="key">key string类型</param>
+        ///// <returns></returns>
+        //public static async Task<TValue> GetOrDefaultAsync<TValue>(this ICache cache, string key)
+        //{
+        //    var value = await cache.GetOrDefaultAsync(key);
+        //    if (value == null)
+        //    {
+        //        return default(TValue);
+        //    }
+
+        //    return (TValue)value;
+        //}
     }
 }

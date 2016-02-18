@@ -15,5 +15,9 @@ namespace Lanche.Redis.RedisCache
         {
             base.PreInitialize();
         }
+        public override void Initialize()
+        {
+            this.IocManager.Register<RedisCacheConst>();
+        }
     }
 }

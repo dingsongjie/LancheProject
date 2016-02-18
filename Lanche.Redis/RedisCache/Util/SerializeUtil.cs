@@ -26,27 +26,6 @@ namespace Lanche.Redis.RedisCache.Util
             }
         }
 
-        //@hikalkan: They are not used. Should be removed if will not be used.
-
-        //private static MemoryStream Compress(Stream stream)
-        //{
-        //    var compressedStream = new MemoryStream();
-        //    using (var compressionStream = new GZipStream(compressedStream, CompressionMode.Compress))
-        //    {
-        //        stream.CopyTo(compressionStream);
-        //        return compressedStream;
-        //    }
-        //}
-
-        //private static Stream Decompress(Stream stream)
-        //{
-        //    var decompressedStream = new MemoryStream();
-        //    using (var decompressionStream = new GZipStream(stream, CompressionMode.Decompress))
-        //    {
-        //        decompressionStream.CopyTo(decompressedStream);
-        //        decompressedStream.Seek(0, SeekOrigin.Begin);
-        //        return decompressedStream;
-        //    }
-        //}
+     
     }
 }

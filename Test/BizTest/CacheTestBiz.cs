@@ -2,10 +2,12 @@
 using Lanche.DynamicWebApi.Application;
 using Lanche.MemoryCache;
 using Lanche.Redis.RedisCache;
+using MongoDb;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BizTest
@@ -21,23 +23,38 @@ namespace BizTest
         }
         public void SetOne()
         {
+
             var cache = _memoryCacheManager.GetOrCreateCache("test1");
             cache.Set("Id", 123456, new TimeSpan(1, 0, 0));
         }
         public object GetOne()
         {
             var cache = _memoryCacheManager.GetOrCreateCache("test1");
-            return  cache.GetOrDefault<string,int>("Id");
+            return cache.GetOrDefault<string, int>("Id");
         }
         public void SetOneInRedis()
         {
+            Car car = new Car() { Id = Guid.NewGuid(), Name = "111" };
             var cache = _redisCacheManager.GetOrCreateCache("test1");
-            cache.SetAsync("Id", 123456);
+
+            cache.SetAsync("Id", car);
+
+            //var cache2 = _redisCacheManager.GetOrCreateCache("test2");
+            //cache.SetAsync("Id", 123456);
+            //var cache3= _redisCacheManager.GetOrCreateCache("test3");
+            //cache.SetAsync("Id", 123456);
         }
-        public async Task<int> GetOneInRedis()
+        public async Task<Car> GetOneInRedis()
         {
+
             var cache = _redisCacheManager.GetOrCreateCache("test1");
-            var value = await cache.GetOrDefaultAsync<string, int>("Id");
+            var value = await cache.GetOrCreateAsync<Car>("Id2", async (m) =>
+            {
+                return await Task.FromResult<Car>(new Car() { Id = Guid.NewGuid(), Name = "111" });
+            }
+                    );
+
+
             return value;
         }
     }

@@ -90,5 +90,9 @@ namespace Lanche.Cache
         /// 清空缓存 async
         /// </summary>
         Task ClearAsync();
+        TValue GetOrDefault<TValue>(string key);
+        Task<TValue> GetOrDefaultAsync<TValue>(string key);
+        TValue GetOrDefault<TKey, TValue>(TKey key);
+        Task<TValue> GetOrDefaultAsync<TKey, TValue>(TKey key);
     }
 }

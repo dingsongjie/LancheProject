@@ -14,8 +14,13 @@ namespace Lanche.Redis.RedisCache
     public class RedisCache : CacheBase
     {
         private readonly ConnectionMultiplexer _connectionMultiplexer;
+        /// <summary>
+        /// 默认 redis 缓存 key
+        /// </summary>
         private readonly RedisCacheConst _cacheConst;
-
+        /// <summary>
+        /// redis 操作对象
+        /// </summary>
         public IDatabase Database
         {
             get
@@ -38,27 +43,32 @@ namespace Lanche.Redis.RedisCache
         {
             var objbyte = Database.StringGet(GetLocalizedKey(key));
             return objbyte.HasValue
-                ? SerializeUtil.Deserialize(objbyte)
+                ? Newtonsoft.Json.JsonConvert.DeserializeObject(SerializeUtil.Deserialize(objbyte).ToString())
                 : null;
         }
         public async override Task<object> GetOrDefaultAsync(string key)
         {
             var objbyte = await Database.StringGetAsync(GetLocalizedKey(key));
             return objbyte.HasValue
-                ? SerializeUtil.Deserialize(objbyte)
+                ? Newtonsoft.Json.JsonConvert.DeserializeObject(SerializeUtil.Deserialize(objbyte).ToString())
                 : null;
         }
-
+        /// <summary>
+        /// 存储形式 为json格式
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="slidingExpireTime"></param>
         public override void Set(string key, object value, TimeSpan? slidingExpireTime = null)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value");
             }
-
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(value);
             Database.StringSet(
                 GetLocalizedKey(key),
-                SerializeUtil.Serialize(value),
+                SerializeUtil.Serialize(json),
                 slidingExpireTime
                 );
         }
@@ -68,10 +78,10 @@ namespace Lanche.Redis.RedisCache
             {
                 throw new ArgumentNullException("value");
             }
-
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(value);
             await Database.StringSetAsync(
                  GetLocalizedKey(key),
-                 SerializeUtil.Serialize(value),
+                 SerializeUtil.Serialize(json),
                  slidingExpireTime
                  );
 
@@ -99,6 +109,41 @@ namespace Lanche.Redis.RedisCache
         private string GetLocalizedKey(string key)
         {
             return "n:" + Name + ",c:" + key;
+        }
+        /// <summary>
+        /// dispose
+        /// </summary>
+        public override void Dispose()
+        {
+            _connectionMultiplexer.Dispose();
+        }
+        public override  TValue GetOrDefault<TValue>(string key)
+        {
+            var objbyte = Database.StringGet(GetLocalizedKey(key));
+            return objbyte.HasValue
+                ? Newtonsoft.Json.JsonConvert.DeserializeObject<TValue>(SerializeUtil.Deserialize(objbyte).ToString())
+                : default(TValue);
+        }
+        public override async Task<TValue> GetOrDefaultAsync<TValue>(string key)
+        {
+            var objbyte = await Database.StringGetAsync(GetLocalizedKey(key));
+            return objbyte.HasValue
+                ? Newtonsoft.Json.JsonConvert.DeserializeObject<TValue>(SerializeUtil.Deserialize(objbyte).ToString())
+                : default(TValue);
+        }
+        public override TValue GetOrDefault<TKey, TValue>(TKey key)
+        {
+            var objbyte = Database.StringGet(GetLocalizedKey(key.ToString()));
+            return objbyte.HasValue
+                ? Newtonsoft.Json.JsonConvert.DeserializeObject<TValue>(SerializeUtil.Deserialize(objbyte).ToString())
+                : default(TValue);
+        }
+        public override async Task<TValue> GetOrDefaultAsync<TKey, TValue>(TKey key)
+        {
+            var objbyte = await Database.StringGetAsync(GetLocalizedKey(key.ToString()));
+            return objbyte.HasValue
+                ? Newtonsoft.Json.JsonConvert.DeserializeObject<TValue>(SerializeUtil.Deserialize(objbyte).ToString())
+                : default(TValue);
         }
     }
 }

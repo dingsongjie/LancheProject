@@ -36,9 +36,6 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="Lanche.Core">
-      <HintPath>..\..\..\..\Documents\Visual Studio 2013\Projects\ClassSchedule\packages\Lanche\Lanche.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Nito.AsyncEx">
       <HintPath>..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.dll</HintPath>
     </Reference>
@@ -72,6 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lanche.Core\Lanche.Core.csproj">
+      <Project>{8b1be22d-74ae-415b-92e3-341a6d3ef871}</Project>
+      <Name>Lanche.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

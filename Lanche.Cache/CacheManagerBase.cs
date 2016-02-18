@@ -11,7 +11,7 @@ using System.Collections.Immutable;
 namespace Lanche.Cache
 {
     /// <summary>
-    /// cache manager 基类
+    /// cache manager 基类  
     /// </summary>
     public abstract class CacheManagerBase : ICacheManager
     {

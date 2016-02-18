@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Lanche.Cache
 {
    /// <summary>
-   /// cache manager
+   /// cache manager 单例
    /// </summary>
     public interface ICacheManager : ISingleDependency, IDisposable
     {

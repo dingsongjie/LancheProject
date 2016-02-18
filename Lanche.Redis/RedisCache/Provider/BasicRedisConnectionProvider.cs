@@ -32,7 +32,7 @@ namespace Lanche.Redis.RedisCache.Provider
                 throw new ArgumentNullException("connectionString");
             }
 
-            ///  Lazy 与 Concurrent collection 之间的应用
+            ///  Lazy   参考 azure redis
 
             return ConnectionMultiplexers.GetOrAdd(
                 connectionString,
