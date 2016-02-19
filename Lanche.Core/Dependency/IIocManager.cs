@@ -17,7 +17,7 @@ namespace Lanche.Core.Dependency
         /// </summary>
         IWindsorContainer IocContainer { get; }
 
-       
+
         /// <summary>
         /// 返回 实现 
         /// </summary> 
@@ -65,7 +65,7 @@ namespace Lanche.Core.Dependency
         /// <returns></returns>
         bool IsRegistered<T>();
 
-       
+
 
 
         /// <summary>
@@ -101,14 +101,30 @@ namespace Lanche.Core.Dependency
         /// <param name="lifeStyle">生命周期</param>
         void Register(Type type, Type impl, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton);
 
-      
 
-    
+
+
         /// <summary>
         /// 如果未注册 则注册
         /// </summary>
         /// <typeparam name="TType">要注册的类型</typeparam>
         /// <param name="lifeStyle">类型的生存类型</param>
         void RegisterIfNot<TType>(DependencyLifeStyle lifeStyle) where TType : class;
+        /// <summary>
+        /// 替换原来的注册 与 autofac 不同 组建的注册 不会发改之前的注册 ，若要覆盖 调用此方法 替换原来的注册
+        /// </summary>
+        /// <typeparam name="TType">service</typeparam>
+        /// <typeparam name="TImpl">implementation </typeparam>
+        /// <param name="lifeStyle">生存周期</param>
+        void Replace<TType, TImpl>(DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
+            where TType : class
+            where TImpl : class, TType;
+        /// <summary>
+        /// 替换原来的注册 与 autofac 不同 组建的注册 不会发改之前的注册 ，若要覆盖 调用此方法 替换原来的注册
+        /// </summary>
+        /// <param name="type">service</param>
+        /// <param name="impl">implementation</param>
+        /// <param name="lifeStyle">生存周期</param>
+        void Replace(Type type, Type impl, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton);
     }
 }

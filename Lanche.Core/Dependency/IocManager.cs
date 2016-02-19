@@ -194,5 +194,18 @@ namespace Lanche.Core.Dependency
                 this.Register<TType>(lifeStyle);
             }
         }
+
+
+        public void Replace<TType, TImpl>(DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton) 
+            where TType : class
+            where TImpl : class, TType
+        {
+            IocContainer.Register(ApplyLifestyle(Component.For<TType, TImpl>().ImplementedBy<TImpl>().IsDefault(), lifeStyle));
+        }
+
+        public void Replace(Type type, Type impl, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
+        {
+            IocContainer.Register(ApplyLifestyle(Component.For(type, impl).ImplementedBy(impl).IsDefault(), lifeStyle));
+        }
     }
 }
