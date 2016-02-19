@@ -61,6 +61,8 @@
   <ItemGroup>
     <Compile Include="Application\IApplicationBiz.cs" />
     <Compile Include="Configuration\CoreStartupConfiguration.cs" />
+    <Compile Include="Configuration\DefaultConfigurationManager.cs" />
+    <Compile Include="Configuration\IConfigurationManager.cs" />
     <Compile Include="Configuration\IStartupConfiguration.cs" />
     <Compile Include="CoreBootstrapper.cs" />
     <Compile Include="CoreInstaller.cs" />
