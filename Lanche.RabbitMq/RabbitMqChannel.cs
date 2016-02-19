@@ -57,24 +57,6 @@ namespace Lanche.RabbitMq
         }
 
 
-        public string Receive(string queue)
-        {
-            QueueOption option = QueueOption.Default;
-            option.QueueName = queue;
-            
-            this.Cannel.QueueDeclare(option.QueueName
-                , option.Durable
-                , option.Exclusive
-                , option.AutoDelete
-                , option.Arguments);
-            Cannel.BasicQos(option.PrefetchSize, option.PrefetchCount, option.Global);
-
-            var consumer = new QueueingBasicConsumer(Cannel);
-            Cannel.BasicConsume(queue, false, consumer);
-            var ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
-
-            var body = ea.Body;
-            return Encoding.UTF8.GetString(body);
-        }
+      
     }
 }
