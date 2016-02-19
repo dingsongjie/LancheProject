@@ -145,5 +145,6 @@ namespace Lanche.Redis.RedisCache
                 ? Newtonsoft.Json.JsonConvert.DeserializeObject<TValue>(SerializeUtil.Deserialize(objbyte).ToString())
                 : default(TValue);
         }
+        
     }
 }

@@ -29,7 +29,13 @@ namespace Lanche.Cache
         /// <param name="factory">如果没找到，创建缓存的 method </param>
         /// <returns>缓存对象</returns>
         object GetOrCreate(string key, Func<string, object> factory);
-
+        /// <summary>
+        /// 根据key 获取缓存的对象,如果没找到 则创建 并返回该对象
+        /// </summary>
+        /// <param name="key">key</param>
+        /// <param name="obj">如果没找到，新建的缓存对象 </param>
+        /// <returns>缓存对象</returns>
+        object GetOrCreate(string key, object obj);
         /// <summary>
         /// 根据key 获取缓存的对象 async,如果没找到 则创建 并返回该对象
         /// </summary>
@@ -37,6 +43,13 @@ namespace Lanche.Cache
         /// <param name="factory">如果没找到，创建缓存的 method</param>
         /// <returns>缓存值的task</returns>
         Task<object> GetOrCreateAsync(string key, Func<string, Task<object>> factory);
+        /// <summary>
+        /// 根据key 获取缓存的对象 async,如果没找到 则创建 并返回该对象
+        /// </summary>
+        /// <param name="key">key</param>
+        /// <param name="obj">如果没找到，创建缓存的 新建的缓存对象</param>
+        /// <returns>缓存值的task</returns>
+        Task<object> GetOrCreateAsync(string key,  object obj);
 
         /// <summary>
         /// 根据 key查找 缓存的对象，如果没找到 返回null
@@ -90,9 +103,103 @@ namespace Lanche.Cache
         /// 清空缓存 async
         /// </summary>
         Task ClearAsync();
+        /// <summary>
+        ///  根据 key 查找 ，若没找到 返回 default(TValue)
+        /// </summary>
+        /// <typeparam name="TValue">value</typeparam>
+        /// <param name="key">ley</param>
+        /// <returns>TValue</returns>
         TValue GetOrDefault<TValue>(string key);
+        /// <summary>
+        ///  根据 key 查找 ，若没找到 返回 default(TValue) async
+        /// </summary>
+        /// <typeparam name="TValue">value</typeparam>
+        /// <param name="key">ley</param>
+        /// <returns>TValue</returns>
         Task<TValue> GetOrDefaultAsync<TValue>(string key);
+        /// <summary>
+        /// 根据 key 查找 ，若没找到 返回 default(TValue)
+        /// </summary>
+        /// <typeparam name="TKey">key</typeparam>
+        /// <typeparam name="TValue">value</typeparam>
+        /// <param name="key">Key</param>
+        /// <returns></returns>
         TValue GetOrDefault<TKey, TValue>(TKey key);
+        /// <summary>
+        /// 根据 key 查找 ，若没找到 返回 default(TValue)  async
+        /// </summary>
+        /// <typeparam name="TKey">key</typeparam>
+        /// <typeparam name="TValue">value</typeparam>
+        /// <param name="key">Key</param>
+        /// <returns></returns>
         Task<TValue> GetOrDefaultAsync<TKey, TValue>(TKey key);
+        /// <summary>
+        /// 根据key 获取缓存的对象,如果没找到 则创建 并返回该对象
+        /// </summary>
+        /// <typeparam name="TKey">key type</typeparam>
+        /// <typeparam name="TValue">value type</typeparam>
+        /// <param name="key">key </param>
+        /// <param name="factory">create method</param>
+        /// <returns>value</returns>
+        TValue GetOrCreate<TKey, TValue>( TKey key, Func<TKey, TValue> factory);
+        /// <summary>
+        /// 根据key 获取缓存的对象,如果没找到 则创建 并返回该对象
+        /// </summary>
+        /// <typeparam name="TKey">key type</typeparam>
+        /// <typeparam name="TValue">value type</typeparam>
+        /// <param name="key">key </param>
+        /// <param name="value">value</param>
+        /// <returns>value</returns>
+        TValue GetOrCreate<TKey, TValue>(TKey key,  TValue value);
+        /// <summary>
+        /// 根据key 获取缓存的对象,如果没找到 则创建 并返回该对象
+        /// </summary>
+        /// <typeparam name="TValue">value type</typeparam>
+        /// <param name="key">key string</param>
+        /// <param name="factory">创建缓存的方法</param>
+        /// <returns>value</returns>
+        TValue GetOrCreate<TValue>(string key, Func<string, TValue> factory);
+        /// <summary>
+        /// 根据key 获取缓存的对象,如果没找到 则创建 并返回该对象
+        /// </summary>
+        /// <typeparam name="TValue">value type</typeparam>
+        /// <param name="key">key string</param>
+        /// <param name="value">创建缓存的方法</param>
+        /// <returns>value</returns>
+        TValue GetOrCreate<TValue>(string key, TValue value);
+        /// <summary>
+        /// 根据key 获取缓存的对象,如果没找到 则创建 并返回该对象 async
+        /// </summary>
+        /// <typeparam name="TKey">key type</typeparam>
+        /// <typeparam name="TValue">value type</typeparam>
+        /// <param name="key">key </param>
+        /// <param name="factory">create method</param>
+        /// <returns>value task</returns>
+        Task<TValue> GetOrCreateAsync<TKey, TValue>(TKey key, Func<TKey, Task<TValue>> factory);
+        /// <summary>
+        /// 根据key 获取缓存的对象,如果没找到 则创建 并返回该对象 async
+        /// </summary>
+        /// <typeparam name="TKey">key type</typeparam>
+        /// <typeparam name="TValue">value type</typeparam>
+        /// <param name="key">key </param>
+        /// <param name="value">value</param>
+        /// <returns>value task</returns>
+        Task<TValue> GetOrCreateAsync<TKey, TValue>(TKey key, TValue value);
+         /// <summary>
+        /// 根据key 获取缓存的对象,如果没找到 则创建 并返回该对象 async
+        /// </summary>
+        /// <typeparam name="TValue">value type</typeparam>
+        /// <param name="key">key string</param>
+        /// <param name="factory">创建缓存的方法</param>
+        /// <returns>value</returns>
+        Task<TValue> GetOrCreateAsync<TValue>(string key, Func<string, Task<TValue>> factory);
+        /// <summary>
+        /// 根据key 获取缓存的对象,如果没找到 则创建 并返回该对象 async
+        /// </summary>
+        /// <typeparam name="TValue">value type</typeparam>
+        /// <param name="key">key string</param>
+        /// <param name="value">value</param>
+        /// <returns>value</returns>
+        Task<TValue> GetOrCreateAsync<TValue>(string key, TValue value);
     }
 }

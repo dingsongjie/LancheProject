@@ -61,7 +61,6 @@
     <Compile Include="Configuration\ICachingConfiguration.cs" />
     <Compile Include="DefaultTypeCacheWrapper.cs" />
     <Compile Include="Extentions\CacheExtensions.cs" />
-    <Compile Include="Extentions\CacheManagerExtensions.cs" />
     <Compile Include="ICache.cs" />
     <Compile Include="ICacheManager.cs" />
     <Compile Include="ITypedCache.cs" />
