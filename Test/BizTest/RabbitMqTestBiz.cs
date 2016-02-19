@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BizTest
@@ -21,15 +22,9 @@ namespace BizTest
         }
         public void Send()
         {
-            ///并发  测试   dispose
-            for(int i=0;i<10000;i++)
-            {
-                IMqChannel c = new RabbitMqChannel(_con);
-                c.Send("test", "hellow");
-                c.Dispose();
-            }
+            
+                
           
-           // _mqCannel.Dispose();
         }
     }
 }

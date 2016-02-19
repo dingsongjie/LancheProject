@@ -21,20 +21,27 @@ namespace MqReceiveConsoleTest
             {
                 using (var channel = connection.CreateModel())
                 {
-                    bool durable = true;
-                    channel.QueueDeclare("test", false, false, false, null);
-                    channel.BasicQos(0, 1, false);
+                    int i = 0;
+
+                   
+
+                    // channel.QueueDeclare("test", false, false, false, null);
+                    //channel.BasicQos(0, 1, false);
 
                     var consumer = new QueueingBasicConsumer(channel);
                     channel.BasicConsume("test", false, consumer);
 
+                    while (true)
+                    {
+                        var ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
+                        i++;
+                        var body = ea.Body;
+                        var message = Encoding.UTF8.GetString(body);
 
-                    var ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
+                        channel.BasicAck(ea.DeliveryTag, false);
+                        Console.WriteLine(i);
+                    }
 
-                    var body = ea.Body;
-                    var message = Encoding.UTF8.GetString(body);
-
-                    channel.BasicAck(ea.DeliveryTag, false);
 
                 }
             }
