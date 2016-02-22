@@ -44,7 +44,7 @@ namespace Lanche.Web.Mvc.Controller
         {
             if (controllerType == null)
             {
-                throw new HttpException(404, string.Format("The controller for path '{0}' could not be found.", requestContext.HttpContext.Request.Path));
+                throw new HttpException(404, string.Format("名称为 '{0}' 的控制器没有被找到.", requestContext.HttpContext.Request.Path));
             }
 
             return (IController)_kernel.Resolve(controllerType);
