@@ -27,10 +27,10 @@ namespace BizTest
             var cache = _memoryCacheManager.GetOrCreateCache("test1");
             cache.Set("Id", 123456, new TimeSpan(1, 0, 0));
         }
-        public object GetOne()
+        public Car GetOne()
         {
             var cache = _memoryCacheManager.GetOrCreateCache("test1");
-            return cache.GetOrDefault<string, int>("Id");
+            return cache.GetOrDefault<string, Car>("Id3");
         }
         public void SetOneInRedis()
         {
@@ -48,11 +48,9 @@ namespace BizTest
         {
 
             var cache = _redisCacheManager.GetOrCreateCache("test1");
-            var value = await cache.GetOrCreateAsync<Car>("Id2", async (m) =>
-            {
-                return await Task.FromResult<Car>(new Car() { Id = Guid.NewGuid(), Name = "111" });
-            }
-                    );
+            var value = await cache.GetOrCreateAsync<Car>("Id3", new Car() { Id = Guid.NewGuid(), Name = "222" });
+            
+              
 
 
             return value;

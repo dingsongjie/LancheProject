@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lanche.Redis.RedisCache.Extensions;
+using Nito.AsyncEx;
 
 namespace Lanche.Redis.RedisCache
 {
@@ -18,6 +19,16 @@ namespace Lanche.Redis.RedisCache
         /// 默认 redis 缓存 key
         /// </summary>
         private readonly RedisCacheConst _cacheConst;
+        /// <summary>
+        /// 异步互斥锁
+        /// </summary>
+
+        private readonly AsyncLock _asyncLock = new AsyncLock();
+        /// <summary>
+        /// 同步互斥锁
+        /// </summary>
+
+        private readonly object RedisCacheSyncObj = new object();
         /// <summary>
         /// redis 操作对象
         /// </summary>
@@ -145,6 +156,158 @@ namespace Lanche.Redis.RedisCache
                 ? Newtonsoft.Json.JsonConvert.DeserializeObject<TValue>(SerializeUtil.Deserialize(objbyte).ToString())
                 : default(TValue);
         }
-        
+        public override async Task<TValue> GetOrCreateAsync<TValue>(string key, TValue value)
+        {
+            var cacheKey = key;
+            var item = await GetOrDefaultAsync<TValue>(key);
+            if (item == null)
+            {
+                using (await _asyncLock.LockAsync())
+                {
+                    item = await GetOrDefaultAsync<TValue>(key);
+                    if (item == null)
+                    {
+                        item = value;
+                        if (item == null)
+                        {
+                            return default(TValue);
+                        }
+
+                        await SetAsync(cacheKey, item);
+                    }
+                }
+            }
+
+            return item;
+        }
+        public override async Task<TValue> GetOrCreateAsync<TValue>(string key, Func<string, Task<TValue>> factory)
+        {
+            var cacheKey = key;
+            var item = await GetOrDefaultAsync<TValue>(key);
+            if (item == null)
+            {
+                using (await _asyncLock.LockAsync())
+                {
+                    item = await GetOrDefaultAsync<TValue>(key);
+                    if (item == null)
+                    {
+                        item = await factory(cacheKey);
+                        if (item == null)
+                        {
+                            return default(TValue);
+                        }
+
+                        await SetAsync(cacheKey, item);
+                    }
+                }
+            }
+
+            return item;
+        }
+        public override async Task<TValue> GetOrCreateAsync<TKey, TValue>(TKey key, TValue value)
+        {
+            return await this.GetOrCreateAsync<TValue>(key.ToString(), value);
+        }
+        public override async Task<TValue> GetOrCreateAsync<TKey, TValue>(TKey key, Func<TKey, Task<TValue>> factory)
+        {
+            var cacheKey = key;
+            var item = await GetOrDefaultAsync<TValue>(key.ToString());
+            if (item == null)
+            {
+                using (await _asyncLock.LockAsync())
+                {
+                    item = await GetOrDefaultAsync<TValue>(key.ToString());
+                    if (item == null)
+                    {
+                        item = await factory(cacheKey);
+                        if (item == null)
+                        {
+                            return default(TValue);
+                        }
+
+                        await SetAsync(cacheKey.ToString(), item);
+                    }
+                }
+            }
+
+            return item;
+        }
+        public override TValue GetOrCreate<TValue>(string key, TValue value)
+        {
+            var cacheKey = key;
+            var item =  GetOrDefault<TValue>(key);
+            if (item == null)
+            {
+                lock (RedisCacheSyncObj)
+                {
+                    item =  GetOrDefault<TValue>(key);
+                    if (item == null)
+                    {
+                        item = value;
+                        if (item == null)
+                        {
+                            return default(TValue);
+                        }
+
+                         Set(cacheKey, item);
+                    }
+                }
+            }
+
+            return item;
+        }
+        public override TValue GetOrCreate<TValue>(string key, Func<string, TValue> factory)
+        {
+            var cacheKey = key;
+            var item = GetOrDefault<TValue>(key);
+            if (item == null)
+            {
+                lock (RedisCacheSyncObj)
+                {
+                    item = GetOrDefault<TValue>(key);
+                    if (item == null)
+                    {
+                        item = factory(cacheKey);
+                        if (item == null)
+                        {
+                            return default(TValue);
+                        }
+
+                        Set(cacheKey, item);
+                    }
+                }
+            }
+
+            return item;
+        }
+        public override TValue GetOrCreate<TKey, TValue>(TKey key, TValue value)
+        {
+            return this.GetOrCreate< TValue>(key.ToString(), value);
+        }
+        public override TValue GetOrCreate<TKey, TValue>(TKey key, Func<TKey, TValue> factory)
+        {
+             var cacheKey = key;
+            var item =  GetOrDefault<TValue>(key.ToString());
+            if (item == null)
+            {
+                lock ( RedisCacheSyncObj)
+                {
+                    item =  GetOrDefault<TValue>(key.ToString());
+                    if (item == null)
+                    {
+                        item =  factory(cacheKey);
+                        if (item == null)
+                        {
+                            return default(TValue);
+                        }
+
+                         Set(cacheKey.ToString(), item);
+                    }
+                }
+            }
+
+            return item;
+        }
+      
     }
 }

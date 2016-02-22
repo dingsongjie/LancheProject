@@ -214,7 +214,7 @@ namespace Lanche.Cache
         }
 
 
-        public object GetOrCreate(string key, object obj)
+        public  object GetOrCreate(string key, object obj)
         {
             var cacheKey = key;
             var item = GetOrDefault(key);
@@ -239,7 +239,7 @@ namespace Lanche.Cache
             return item;
         }
 
-        public async Task<object> GetOrCreateAsync(string key, object obj)
+        public virtual async Task<object> GetOrCreateAsync(string key, object obj)
         {
              var cacheKey = key;
             var item = await GetOrDefaultAsync(key);
@@ -265,27 +265,27 @@ namespace Lanche.Cache
         }
 
 
-        public TValue GetOrCreate<TKey, TValue>(TKey key, Func<TKey, TValue> factory)
+        public virtual TValue GetOrCreate<TKey, TValue>(TKey key, Func<TKey, TValue> factory)
         {
             return (TValue)this.GetOrCreate(key.ToString(), (k) => (object)factory(key));
         }
 
-        public TValue GetOrCreate<TKey, TValue>(TKey key, TValue value)
+        public virtual TValue GetOrCreate<TKey, TValue>(TKey key, TValue value)
         {
             return (TValue)this.GetOrCreate(key.ToString(), value);
         }
 
-        public TValue GetOrCreate<TValue>(string key, Func<string, TValue> factory)
+        public virtual TValue GetOrCreate<TValue>(string key, Func<string, TValue> factory)
         {
             return (TValue)this.GetOrCreate(key, (k) => (object)factory(key));
         }
 
-        public TValue GetOrCreate<TValue>(string key, TValue value)
+        public virtual TValue GetOrCreate<TValue>(string key, TValue value)
         {
-            return (TValue)this.GetOrCreate(key, value);
+            return (TValue)this.GetOrCreate(key, (object)value);
         }
 
-        public async Task<TValue> GetOrCreateAsync<TKey, TValue>(TKey key, Func<TKey, Task<TValue>> factory)
+        public virtual async Task<TValue> GetOrCreateAsync<TKey, TValue>(TKey key, Func<TKey, Task<TValue>> factory)
         {
             var value = await this.GetOrCreateAsync(key.ToString(), async (keyAsString) =>
             {
@@ -296,14 +296,14 @@ namespace Lanche.Cache
             return (TValue)value;
         }
 
-        public async Task<TValue> GetOrCreateAsync<TKey, TValue>(TKey key, TValue value)
+        public virtual async Task<TValue> GetOrCreateAsync<TKey, TValue>(TKey key, TValue value)
         {
              var valueO = await this.GetOrCreateAsync(key.ToString(),value);
 
-            return (TValue)value;
+             return (TValue)valueO;
         }
 
-        public async Task<TValue> GetOrCreateAsync<TValue>(string key, Func<string, Task<TValue>> factory)
+        public virtual async Task<TValue> GetOrCreateAsync<TValue>(string key, Func<string, Task<TValue>> factory)
         {
             var value = await this.GetOrCreateAsync(key, async (keyAsString) =>
             {
@@ -314,11 +314,11 @@ namespace Lanche.Cache
             return (TValue)value;
         }
 
-        public async Task<TValue> GetOrCreateAsync<TValue>(string key, TValue value)
+        public virtual async Task<TValue> GetOrCreateAsync<TValue>(string key, TValue value)
         {
-             var valueO = await this.GetOrCreateAsync(key,value);
+            var valueO = await this.GetOrCreateAsync(key, (object)value);
 
-            return (TValue)value;
+            return (TValue)valueO;
         }
     }
 }
