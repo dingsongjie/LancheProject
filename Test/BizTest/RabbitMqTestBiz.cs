@@ -22,8 +22,8 @@ namespace BizTest
         }
         public void Send()
         {
-            
-               
+            _mqCannel.Send("test", "hellow");
+            _mqCannel.Dispose();
           
         }
     }

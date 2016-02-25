@@ -28,7 +28,7 @@ namespace Lanche.Core
         public void Initialize()
         {
             IocManager.IocContainer.Install(new CoreInstaller());
-            IocManager.Resolve<CoreStartupConfiguration>().Initialize();
+          
             _moduleManager = IocManager.Resolve<IModuleManager>();
             _moduleManager.InitializeModules();
 

@@ -1,5 +1,6 @@
 ﻿using Lanche.Core.Module;
 using Lanche.MessageQueue;
+using Lanche.RabbitMq.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,12 @@ namespace Lanche.RabbitMq
     {
        public override void PreInitialize()
        {
-           IocManager.IocContainer.Install(new RabbitInstaller());
-           base.PreInitialize();
+         //  IocManager.IocContainer.Install(new RabbitInstaller());
+           
+       }
+       public override void Initialize()
+       {
+           ConfigurationManager.Add<IRabbitMqConfiguration, DefaultRabbitMqConfiguration>();
        }
     }
 }

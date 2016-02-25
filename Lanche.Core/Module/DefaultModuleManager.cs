@@ -21,13 +21,14 @@ namespace Lanche.Core.Module
         private readonly IIocManager _iocManager;
 
         private readonly IModuleFinder _moduleFinder;
+        private readonly IConfigurationManager _configurationManager;
 
-        public DefaultModuleManager(IIocManager iocManager, IModuleFinder moduleFinder)
+        public DefaultModuleManager(IIocManager iocManager, IModuleFinder moduleFinder, IConfigurationManager configurationManager)
         {
             _modules = new ModuleCollection();
             _iocManager = iocManager;
             _moduleFinder = moduleFinder;
-            
+            _configurationManager = configurationManager;
         }
 
         public virtual void InitializeModules()
@@ -75,8 +76,8 @@ namespace Lanche.Core.Module
                 var moduleObject = (Module)_iocManager.Resolve(moduleType);
 
                 moduleObject.IocManager = _iocManager;
-                moduleObject.Configuration = _iocManager.Resolve<IStartupConfiguration>();
-
+                moduleObject.ConfigurationManager = _configurationManager;
+               
                 _modules.Add(new ModuleInfo(moduleObject));
 
      

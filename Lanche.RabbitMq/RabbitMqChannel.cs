@@ -15,9 +15,10 @@ namespace Lanche.RabbitMq
         private readonly IRabbitMqConfiguration _configuration;
 
         public IConnection Conncetion { get; set; }
-        public RabbitMqChannel(IRabbitMqConfiguration configuration )
+        public RabbitMqChannel(IRabbitMqConfiguration configuration,RabbitConnector connector )
         {
-            this.Conncetion = RabbitConnector.Connect(RabbitConnectionInfo.Default);
+            this.Conncetion = connector.Connect(RabbitConnectionInfo.Default);
+            
             this._configuration = configuration;
         }
         public Encoding MessageEncoding { get { return _configuration.BodyEncoding; } }

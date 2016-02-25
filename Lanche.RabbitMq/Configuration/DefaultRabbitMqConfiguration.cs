@@ -8,15 +8,43 @@ namespace Lanche.RabbitMq.Configuration
 {
     public class DefaultRabbitMqConfiguration : IRabbitMqConfiguration
     {
+        private Encoding _bodyEncoding = Encoding.UTF8;
+        private bool _automaticRecovery = true;
+        private TimeSpan _networkRecoveryInterval = TimeSpan.FromSeconds(5);
         public Encoding BodyEncoding
         {
             get
             {
-                return Encoding.UTF8;
+                return _bodyEncoding;
             }
             set
             {
-                BodyEncoding = value;
+                _bodyEncoding = value;
+            }
+        }
+
+
+        public bool AutomaticRecovery
+        {
+            get
+            {
+                return _automaticRecovery;
+            }
+            set
+            {
+                _automaticRecovery = value;
+            }
+        }
+
+        public TimeSpan NetworkRecoveryInterval
+        {
+            get
+            {
+                return _networkRecoveryInterval;
+            }
+            set
+            {
+                _networkRecoveryInterval = value;
             }
         }
     }

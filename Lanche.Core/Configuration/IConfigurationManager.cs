@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,5 +56,6 @@ namespace Lanche.Core.Configuration
         /// <param name="configurationType">配置类型</param>
         /// <param name="configurationImpl">配置的实现</param>
         void Add(Type configurationType, Type configurationImpl);
+      
     }
 }

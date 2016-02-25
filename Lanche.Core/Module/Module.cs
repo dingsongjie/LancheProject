@@ -17,14 +17,12 @@ namespace Lanche.Core.Module
        /// </summary>
         protected internal IIocManager IocManager { get; internal set; }
 
-       /// <summary>
-       /// 配置
-       /// </summary>
-        protected internal IStartupConfiguration Configuration { get; internal set; }
+      
         public IAssemblyFinder AssemblyFinder { get; set; }
         /// <summary>
-        /// 程序集
+        /// configuration manager
         /// </summary>
+        protected internal IConfigurationManager ConfigurationManager { get; internal set; }
         public List<Assembly> AllAssemblies { get; set; }
      
 

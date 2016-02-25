@@ -19,7 +19,8 @@ namespace Lanche.Core
             container.Register(Component.For<ITypeFinder, BasicTypeFinder>().ImplementedBy<BasicTypeFinder>().LifestyleSingleton(),
                 Component.For<IModuleFinder, DefaultModuleFinder>().ImplementedBy<DefaultModuleFinder>().LifestyleSingleton(),
                 Component.For<IModuleManager, DefaultModuleManager>().ImplementedBy<DefaultModuleManager>().LifestyleSingleton(),
-                Component.For<IStartupConfiguration, CoreStartupConfiguration>().ImplementedBy<CoreStartupConfiguration>().LifestyleSingleton()
+                 Component.For<IConfigurationManager, DefaultConfigurationManager>().ImplementedBy<DefaultConfigurationManager>().LifestyleSingleton()
+               
                 );
         }
     }

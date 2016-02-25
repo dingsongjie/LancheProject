@@ -8,6 +8,6 @@ namespace Lanche.Core.Configuration
 {
     public  interface IStartupConfiguration
     {
-       void Initialize();
+     
     }
 }
