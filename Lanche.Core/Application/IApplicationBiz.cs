@@ -10,7 +10,7 @@ namespace Lanche.Core.Application
     /// <summary>
     /// 起到反射后的筛选作用，表示这是业务逻辑载体
     /// </summary>
-    public interface IApplicationBiz : IMultipleDependency
+    public interface IApplicationBiz : ITransientDependency
     {
     }
 }

@@ -9,7 +9,7 @@ namespace Lanche.Core.Dependency
     /// <summary>
     /// 依赖注入 多实例
     /// </summary>
-    public interface IMultipleDependency
+    public interface ITransientDependency
     {
     }
 }

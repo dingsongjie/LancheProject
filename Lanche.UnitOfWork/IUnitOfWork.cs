@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lanche.UnitOfWork
 {
-    public interface IUnitOfWork : IMultipleDependency,IDisposable
+    public interface IUnitOfWork : ITransientDependency,IDisposable
     {
         /// <summary>
         /// 此工作单元Id 标识

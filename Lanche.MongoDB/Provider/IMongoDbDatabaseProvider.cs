@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lanche.MongoDB.Provider
 {
-    public interface IMongoDbDatabaseProvider<TMongoDbContext>:Lanche.Core.Dependency.IMultipleDependency where TMongoDbContext : MongoDbContext
+    public interface IMongoDbDatabaseProvider<TMongoDbContext>:Lanche.Core.Dependency.ITransientDependency where TMongoDbContext : MongoDbContext
     {
         TMongoDbContext DbContext { get; }
        IMongoDatabase Database { get; }

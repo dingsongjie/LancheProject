@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Lanche.RabbitMq
 {
-    public class RabbitMqChannel : IMqChannel,Lanche.Core.Dependency.IMultipleDependency
+    public class RabbitMqChannel : IMqChannel,Lanche.Core.Dependency.ITransientDependency
     {
         private readonly IRabbitMqConfiguration _configuration;
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lanche.Redis.RedisCache.Provider
 {
-    public interface IRedisConnectionProvider:IMultipleDependency
+    public interface IRedisConnectionProvider:ITransientDependency
     {
         ConnectionMultiplexer GetConnection(string connectionString);
 

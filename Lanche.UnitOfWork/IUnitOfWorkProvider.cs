@@ -9,7 +9,7 @@ namespace Lanche.UnitOfWork
     /// <summary>
     /// 工作单元提供者
     /// </summary>
-    public interface IUnitOfWorkProvider : IMultipleDependency
+    public interface IUnitOfWorkProvider : ITransientDependency
     {
         IUnitOfWork Current { get; set; }
     }
