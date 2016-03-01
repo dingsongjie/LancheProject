@@ -10,7 +10,7 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic
    /// Ajax 返回
    /// </summary>
    /// <typeparam name="TResult"></typeparam>
-    [Serializable]
+    //[Serializable]
     public class AjaxResponse<TData>
     {
         /// <summary>

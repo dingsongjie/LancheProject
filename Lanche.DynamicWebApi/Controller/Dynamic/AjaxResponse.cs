@@ -8,7 +8,7 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic
     /// <summary>
     /// 返回 json 
     /// </summary>
-    [Serializable]
+    //[Serializable]
     public class AjaxResponse : AjaxResponse<object>
     {
        /// <summary>
