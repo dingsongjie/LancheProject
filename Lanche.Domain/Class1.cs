@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lanche.RR
+namespace Lanche.Domain
 {
     public class Class1
     {

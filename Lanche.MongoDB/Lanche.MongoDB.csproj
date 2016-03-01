@@ -92,10 +92,6 @@
       <Project>{8b1be22d-74ae-415b-92e3-341a6d3ef871}</Project>
       <Name>Lanche.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Lanche.Domain\Lanche.Domain.csproj">
-      <Project>{a737414e-5b1f-411b-9e30-22ec0d6602a9}</Project>
-      <Name>Lanche.Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />
