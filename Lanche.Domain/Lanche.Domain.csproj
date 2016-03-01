@@ -47,6 +47,12 @@
     <Compile Include="Repository\Paging\PagingDTO.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lanche.Core\Lanche.Core.csproj">
+      <Project>{8b1be22d-74ae-415b-92e3-341a6d3ef871}</Project>
+      <Name>Lanche.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

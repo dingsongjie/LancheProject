@@ -96,6 +96,10 @@
       <Project>{8b1be22d-74ae-415b-92e3-341a6d3ef871}</Project>
       <Name>Lanche.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Lanche.Domain\Lanche.Domain.csproj">
+      <Project>{2d134c24-76f5-4508-b90a-698f954d806e}</Project>
+      <Name>Lanche.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Lanche.Entityframework\Lanche.Entityframework.csproj">
       <Project>{c4eb9e39-a078-4c55-9e80-5d78a62a64ba}</Project>
       <Name>Lanche.Entityframework</Name>

@@ -101,6 +101,10 @@
       <Project>{8b1be22d-74ae-415b-92e3-341a6d3ef871}</Project>
       <Name>Lanche.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Lanche.Domain\Lanche.Domain.csproj">
+      <Project>{2d134c24-76f5-4508-b90a-698f954d806e}</Project>
+      <Name>Lanche.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lanche.UnitOfWork\Lanche.UnitOfWork.csproj">
       <Project>{a462baee-bd27-4bb4-80a9-20a3ee484449}</Project>
       <Name>Lanche.UnitOfWork</Name>
