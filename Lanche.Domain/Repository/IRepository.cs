@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lanche.Core.Repository
+namespace Lanche.Domain.Repository
 {
     /// <summary>
     /// 起到反射后的筛选作用 ，表示 这是一个数据访问仓库

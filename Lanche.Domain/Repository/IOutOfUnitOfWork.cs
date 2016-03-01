@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lanche.Core.Repository
+namespace Lanche.Domain.Repository
 {
     public interface IOutOfUnitOfWork
     {

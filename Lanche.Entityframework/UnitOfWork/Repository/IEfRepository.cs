@@ -1,5 +1,5 @@
 ﻿using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
-using Lanche.Core.Repository;
+using Lanche.Domain.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;

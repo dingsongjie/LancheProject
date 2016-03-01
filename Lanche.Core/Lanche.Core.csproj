@@ -73,11 +73,6 @@
     <Compile Include="Dependency\IocManager.cs" />
     <Compile Include="Dependency\ISingleDependency.cs" />
     <Compile Include="Dependency\IMultipleDependency.cs" />
-    <Compile Include="Repository\IOutOfUnitOfWork.cs" />
-    <Compile Include="Repository\IRepositoryWithEntity.cs" />
-    <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Repository\Paging\PagingDTO.cs" />
-    <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Module\DefaultModuleFinder.cs" />
     <Compile Include="Module\DefaultModuleManager.cs" />
     <Compile Include="Module\DependsOnAttribute.cs" />

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lanche.Core.Repository.Paging
+namespace Lanche.Domain.Repository.Paging
 {
     /// <summary>
     /// 分页数据传输对象

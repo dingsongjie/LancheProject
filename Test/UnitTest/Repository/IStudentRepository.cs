@@ -1,4 +1,4 @@
-﻿using Lanche.Core.Repository;
+﻿using Lanche.Domain.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

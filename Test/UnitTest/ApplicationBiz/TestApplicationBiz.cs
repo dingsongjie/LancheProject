@@ -1,6 +1,6 @@
 ﻿using Lanche.Core.Application;
-using Lanche.Core.Repository;
-using Lanche.Core.Repository.Paging;
+using Lanche.Domain.Repository;
+using Lanche.Domain.Repository.Paging;
 using Lanche.Entityframework.UnitOfWork.Repository;
 using Lanche.UnitOfWork;
 using System;

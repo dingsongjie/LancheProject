@@ -1,4 +1,4 @@
-﻿using Lanche.Core.Repository.Paging;
+﻿using Lanche.Domain.Repository.Paging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lanche.Core.Repository
+namespace Lanche.Domain.Repository
 {
     /// <summary>
     /// 通用数据库访问仓库的基类

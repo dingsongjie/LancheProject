@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using Lanche.UnitOfWork;
 using System.IO;
-using Lanche.Core.Repository.Paging;
+using Lanche.Domain.Repository.Paging;
 using System.ComponentModel;
 using Lanche.Entityframework.UnitOfWork;
 using UnitTest.Helper;

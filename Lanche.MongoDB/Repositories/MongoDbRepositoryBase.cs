@@ -1,4 +1,4 @@
-﻿using Lanche.Core.Repository;
+﻿using Lanche.Domain.Repository;
 
 using MongoDB.Driver;
 using System;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Driver.Linq;
 using System.Reflection;
-using Lanche.Core.Repository.Paging;
+using Lanche.Domain.Repository.Paging;
 using Lanche.MongoDB.DbContext;
 using Lanche.MongoDB.Provider;
 

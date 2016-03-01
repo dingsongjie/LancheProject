@@ -33,7 +33,7 @@ namespace Lanche.UnitOfWork
 
         internal void FillDefaultsForNonProvidedOptions(IUnitOfWorkDefaultOptions defaultOptions)
         {
-            //TODO: Do not change options object..?
+            
 
             if (!IsTransactional.HasValue)
             {

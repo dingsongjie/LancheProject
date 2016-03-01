@@ -1,6 +1,5 @@
 ﻿
 using Lanche.Core.Application;
-using Lanche.Core.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +20,8 @@ namespace Lanche.UnitOfWork
        /// <returns></returns>
         public static bool IsConventionalUowClass(Type type)
         {
-            return (typeof(IRepository).IsAssignableFrom(type) && !typeof(IOutOfUnitOfWork).IsAssignableFrom(type)) || typeof(IApplicationBiz).IsAssignableFrom(type);
-       
+          //  return (typeof(IRepository).IsAssignableFrom(type) && !typeof(IOutOfUnitOfWork).IsAssignableFrom(type)) || typeof(IApplicationBiz).IsAssignableFrom(type);
+            return typeof(IApplicationBiz).IsAssignableFrom(type);
         }
 
        /// <summary>

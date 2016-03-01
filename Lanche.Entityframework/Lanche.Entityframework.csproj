@@ -55,10 +55,6 @@
       <HintPath>..\packages\EntityFramework.BulkInsert-ef6.6.0.2.8\lib\Net45\EntityFramework.BulkInsert.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework.DynamicFilters, Version=1.4.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.DynamicFilters.1.4.6\lib\net40\EntityFramework.DynamicFilters.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
       <Private>True</Private>
@@ -104,6 +100,10 @@
     <ProjectReference Include="..\Lanche.Core\Lanche.Core.csproj">
       <Project>{8b1be22d-74ae-415b-92e3-341a6d3ef871}</Project>
       <Name>Lanche.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lanche.Domain\Lanche.Domain.csproj">
+      <Project>{a737414e-5b1f-411b-9e30-22ec0d6602a9}</Project>
+      <Name>Lanche.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lanche.UnitOfWork\Lanche.UnitOfWork.csproj">
       <Project>{a462baee-bd27-4bb4-80a9-20a3ee484449}</Project>

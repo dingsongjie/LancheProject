@@ -1,6 +1,6 @@
 ﻿using Lanche.Core.Application;
-using Lanche.Core.Repository;
-using Lanche.Core.Repository.Paging;
+using Lanche.Domain.Repository;
+using Lanche.Domain.Repository.Paging;
 using Lanche.DynamicWebApi.Application;
 using Lanche.DynamicWebApi.Controller.Filters;
 using Lanche.Entityframework.UnitOfWork.Repository;
