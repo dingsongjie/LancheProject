@@ -14,15 +14,27 @@ namespace Lanche.DynamicWebApi.Controller.Filters
     /// 最简单地实现 Todo:实现返回路径动态可配  
     /// </summary>
     public class DefaultAuthorizeAttribute : AuthorizeAttribute
+       
     {
+        /// <summary>
+        /// 默认为 百度
+        /// </summary>
+        public string AuthenticationUrl { get; set; }
+        /// <summary>
+        /// 默认为当前request url
+        /// </summary>
+        public string ReturnUrl { get; set; }
         protected override void HandleUnauthorizedRequest(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
             if (actionContext == null)
             {
                 throw new ArgumentNullException ("actionContext");
             }
-
-            actionContext.Response = AsyncHelper.RunSync <HttpResponseMessage>(()=> actionContext.ControllerContext.Request.GetRedirectResponse("http://www.baidu.com"+"?ReturnUrl="+actionContext.ControllerContext.Request.RequestUri));
+            if (AuthenticationUrl == null)
+            {
+                AuthenticationUrl = "http://www.baidu.com";
+            }
+            actionContext.Response = AsyncHelper.RunSync<HttpResponseMessage>(() => actionContext.ControllerContext.Request.GetRedirectResponse(AuthenticationUrl + "?ReturnUrl=" + actionContext.ControllerContext.Request.RequestUri));
         }
     }
 }

@@ -28,7 +28,7 @@ namespace UnitTest
             _studentRepository = studentRepository;
             _uowManger = uowManger;
         }
-        [HttpPost]
+        
         public virtual PagingEntity<Students> GetInPaging(int pageIndex, int PageSize, bool sort, string orderProperty)
         {
 
