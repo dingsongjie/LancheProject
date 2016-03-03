@@ -13,16 +13,17 @@ using System.Web.Routing;
 
 namespace WebTest
 {
-    public class MvcApplication : WebHttpApplication
+    //public class MvcApplication : WebHttpApplication
+    public class MvcApplication : System.Web.HttpApplication
     {
-        public override void Application_Start(object sender, EventArgs e)
+        public  void Application_Start(object sender, EventArgs e)
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
              //IocManager.Instance.IocContainer.AddFacility<LoggingFacility>(f => f.UseLog4Net().WithConfig("log4net.config"));   //log4 注入
-            base.Application_Start(sender,e);
+           // base.Application_Start(sender,e);
         }
     }
 }
