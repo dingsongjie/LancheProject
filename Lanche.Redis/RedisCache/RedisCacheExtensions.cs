@@ -13,7 +13,7 @@ namespace Lanche.Redis.RedisCache
     {
         public static IAppBuilder UseRedisCache(this IAppBuilder appBuilder )
         {
-            IocManager.Instance.Replace(typeof(ICacheManager), typeof(DefaultRedisCacheManager), DependencyLifeStyle.Multiple);
+            IocManager.Instance.Replace(typeof(ICacheManager), typeof(DefaultRedisCacheManager));
             return appBuilder;
         }
     }

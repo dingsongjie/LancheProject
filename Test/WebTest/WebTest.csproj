@@ -219,6 +219,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Lanche.Log\Lanche.Log.csproj">
+      <Project>{9fb0203a-923e-4045-a9bb-bbcd5a6ff3cb}</Project>
+      <Name>Lanche.Log</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BizTest\BizTest.csproj">
       <Project>{21156d02-630e-400d-8ad6-d7b09648b8c1}</Project>
       <Name>BizTest</Name>

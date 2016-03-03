@@ -14,28 +14,28 @@ namespace BizTest
 {
     public class CacheTestBiz : ApplicationBizBase
     {
-        private readonly DefaultMemoryCacheManager _memoryCacheManager;
-        private readonly DefaultRedisCacheManager _redisCacheManager;
-        public CacheTestBiz(DefaultMemoryCacheManager memoryCacheManager, DefaultRedisCacheManager redisCacheManager)
+        private readonly ICacheManager cacheManager;
+
+        public CacheTestBiz(ICacheManager cacheManager)
         {
-            this._memoryCacheManager = memoryCacheManager;
-            this._redisCacheManager = redisCacheManager;
+            this.cacheManager = cacheManager;
+            
         }
         public void SetOne()
         {
 
-            var cache = _memoryCacheManager.GetOrCreateCache("test1");
+            var cache = cacheManager.GetOrCreateCache("test1");
             cache.Set("Id", 123456, new TimeSpan(1, 0, 0));
         }
-        public Car GetOne()
+        public int GetOne()
         {
-            var cache = _memoryCacheManager.GetOrCreateCache("test1");
-            return cache.GetOrDefault<string, Car>("Id3");
+            var cache = cacheManager.GetOrCreateCache("test1");
+            return cache.GetOrDefault<string, int>("Id");
         }
         public void SetOneInRedis()
         {
             Car car = new Car() { Id = Guid.NewGuid(), Name = "111" };
-            var cache = _redisCacheManager.GetOrCreateCache("test1");
+            var cache = cacheManager.GetOrCreateCache("test1");
 
             cache.SetAsync("Id", car);
 
@@ -47,8 +47,8 @@ namespace BizTest
         public async Task<Car> GetOneInRedis()
         {
 
-            var cache = _redisCacheManager.GetOrCreateCache("test1");
-            var value = await cache.GetOrCreateAsync<Car>("Id3", new Car() { Id = Guid.NewGuid(), Name = "222" });
+            var cache = cacheManager.GetOrCreateCache("test1");
+            var value = await cache.GetOrCreateAsync<Car>("Id", new Car() { Id = Guid.NewGuid(), Name = "222" });
             
               
 

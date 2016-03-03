@@ -10,7 +10,7 @@ namespace Lanche.Cache
    /// <summary>
    /// cache manager 单例
    /// </summary>
-    public interface ICacheManager : ISingleDependency, IDisposable
+    public interface ICacheManager :  IDisposable
     {
        /// <summary>
        /// 返回所有缓存对象

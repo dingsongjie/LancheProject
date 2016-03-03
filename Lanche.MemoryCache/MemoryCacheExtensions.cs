@@ -13,7 +13,7 @@ namespace Lanche.MemoryCache
     {
         public static IAppBuilder UseMemoryCache(this IAppBuilder appBuilder)
         {
-            IocManager.Instance.Replace(typeof(ICacheManager), typeof(DefaultMemoryCacheManager), DependencyLifeStyle.Multiple);
+            IocManager.Instance.Replace(typeof(ICacheManager), typeof(DefaultMemoryCacheManager));
             return appBuilder;
         }
     }
