@@ -14,11 +14,7 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic.Builders
     {
        
 
-        /// <summary>
-        /// Used to specify another method definition.
-        /// </summary>
-        /// <param name="methodName">Name of the method in proxied type</param>
-        /// <returns>Action builder</returns>
+       
         IApiControllerActionBuilder<T> ForMethod(string methodName);
 
        /// <summary>

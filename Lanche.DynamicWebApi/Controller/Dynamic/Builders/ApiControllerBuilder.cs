@@ -82,6 +82,7 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic.Builders
         /// </summary>
         public void Build()
         {
+            AddControllerFilters();
             var controllerInfo = new DynamicApiControllerInfo(
                 _serviceName,
                 typeof(T),
@@ -100,6 +101,28 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic.Builders
             }
 
             DynamicApiControllerManager.Register(controllerInfo);
+        }
+        private void AddControllerFilters()
+        {
+            var bizType = typeof(T);
+            var filters = bizType.GetCustomAttributes(false);
+              
+            foreach(var filter in filters)
+            {
+                if(filter is IFilter)
+                {
+                    if(_filters==null)
+                    {
+                        _filters = new IFilter[1];
+                        _filters[0] = (IFilter)filter;
+                    }
+                    else
+                    {
+                        Array.Resize<IFilter>(ref _filters, _filters.Length + 1);
+                        _filters[_filters.Length] = (IFilter)filter;
+                    }
+                }
+            }
         }
     }
 }

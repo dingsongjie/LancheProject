@@ -42,7 +42,7 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic.Selectors
         {
             var actionFilters = new Collection<IFilter>();
 
-            if (!(_filters.Count()>0))
+            if ((_filters.Count()>0))
             {
                 foreach (var filter in _filters)
                 {

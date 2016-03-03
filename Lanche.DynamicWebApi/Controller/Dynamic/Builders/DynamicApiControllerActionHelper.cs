@@ -59,7 +59,7 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic.Builders
         /// <returns></returns>
         private static bool IsPropertyAccessor(MethodInfo method)
         {
-            //MethodAttributes.HideBySig 的必要性 ？？
+            
 
             return method.IsSpecialName && (method.Attributes & MethodAttributes.HideBySig) != 0;
         }
