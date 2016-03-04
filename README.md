@@ -1,6 +1,7 @@
 # LancheProject
 asp.net web 开发框架  
 基于 .net framework 4.5.1 ，owin , asp.net mvc 5 ,asp.net web api 2  , ef 6 , mongodb , redis, rabbitmq, log4net 帮助开发人员快速开发web后端，减少工作量，以专注业务层的建设。目前后台和前端的交互只支持json ,而且LancheProject 没有 提供前端框架 ,但是 不久就会新开一个项目 提供基架生成curd前端代码，并在不久提供基于LancheProject的权限框架。
+联系方式 : 腾讯QQ 377973147
 
 
 ## 框架使用
@@ -101,7 +102,7 @@ asp.net web 开发框架
 配置连接字符串
 <pre>
    <code>
-   
+
        <add name="TestDbContext" connectionString="server=.;database=AbpTest;uid=sa;pwd=123456" providerName="System.Data.SqlClient" />
    </code>
 </pre>
