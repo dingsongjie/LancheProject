@@ -7,6 +7,9 @@ using System.Web.Http;
 using Lanche.DynamicWebApi.Controller.Filters.Extensions;
 using Lanche.Core.Thread;
 using System.Net.Http;
+using Lanche.Web.Exceptions;
+using System.Net;
+using Lanche.DynamicWebApi.Controller.Dynamic;
 
 namespace Lanche.DynamicWebApi.Controller.Filters
 {
@@ -16,10 +19,10 @@ namespace Lanche.DynamicWebApi.Controller.Filters
     public class DefaultAuthorizeAttribute : AuthorizeAttribute
        
     {
-        /// <summary>
-        /// 默认为 百度
-        /// </summary>
-        public string AuthenticationUrl { get; set; }
+        ///// <summary>
+        ///// 默认为 百度
+        ///// </summary>
+        //public string AuthenticationUrl { get; set; }
         /// <summary>
         /// 默认为当前request url
         /// </summary>
@@ -30,11 +33,16 @@ namespace Lanche.DynamicWebApi.Controller.Filters
             {
                 throw new ArgumentNullException ("actionContext");
             }
-            if (AuthenticationUrl == null)
-            {
-                AuthenticationUrl = "http://www.baidu.com";
-            }
-            actionContext.Response = AsyncHelper.RunSync<HttpResponseMessage>(() => actionContext.ControllerContext.Request.GetRedirectResponse(AuthenticationUrl + "?ReturnUrl=" + actionContext.ControllerContext.Request.RequestUri));
+            //if (AuthenticationUrl == null)
+            //{
+            //    AuthenticationUrl = "http://www.baidu.com";
+            //}
+            //actionContext.Response = AsyncHelper.RunSync<HttpResponseMessage>(() => actionContext.ControllerContext.Request.GetRedirectResponse(AuthenticationUrl + "?ReturnUrl=" + actionContext.ControllerContext.Request.RequestUri));
+           // throw new AuthorizationException();
+            actionContext.Response = actionContext.Request.CreateResponse(
+               HttpStatusCode.OK,
+               new AjaxResponse(new ErrorInfo() { Message = "权限不足", UnAuthorizedRequest = true }) { }
+               );
         }
     }
 }

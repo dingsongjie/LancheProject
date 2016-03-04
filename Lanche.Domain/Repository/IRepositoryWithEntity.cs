@@ -124,10 +124,18 @@ namespace Lanche.Domain.Repository
 
         #region Update
 
-       
+       /// <summary>
+       /// 更新 单个 同步
+       /// </summary>
+       /// <param name="entity"></param>
+       /// <returns></returns>
         TEntity Update(TEntity entity);
 
-
+        /// <summary>
+        /// 更新 单个实体 异步
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         Task<TEntity> UpdateAsync(TEntity entity);
 
 
@@ -137,8 +145,16 @@ namespace Lanche.Domain.Repository
 
         #region Delete
 
-       
+       /// <summary>
+       /// 删除单个实体
+       /// </summary>
+       /// <param name="entity"></param>
         void Delete(TEntity entity);
+        /// <summary>
+        /// 删除单个实体 异步
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
 
         Task DeleteAsync(TEntity entity);
 

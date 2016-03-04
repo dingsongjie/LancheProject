@@ -29,6 +29,8 @@ namespace WebTest
                .UseRabbitMq()
                .UseMqConnection(
                new Lanche.MessageQueue.ConnectionInfo("test1", "localhost", "/", "guest", "guest", 5672));
+
+
                
                
                
