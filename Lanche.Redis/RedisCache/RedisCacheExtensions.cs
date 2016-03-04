@@ -11,9 +11,10 @@ namespace Lanche.Redis.RedisCache
 {
     public static class RedisCacheExtensions
     {
-        public static IAppBuilder UseRedisCache(this IAppBuilder appBuilder )
+        public static IAppBuilder UseRedisCache(this IAppBuilder appBuilder,string connectionName )
         {
             IocManager.Instance.Replace(typeof(ICacheManager), typeof(DefaultRedisCacheManager));
+            RedisCacheConst.RedisConnectionName = connectionName;
             return appBuilder;
         }
     }

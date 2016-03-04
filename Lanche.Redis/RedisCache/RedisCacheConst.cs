@@ -7,6 +7,6 @@ namespace Lanche.Redis.RedisCache
 {
   public  class RedisCacheConst
     {
-      public  string RedisConnectionName = "Lanche.Redis.Cache";
+      public static string RedisConnectionName = "Lanche.Redis.Cache";
     }
 }

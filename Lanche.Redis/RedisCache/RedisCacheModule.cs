@@ -11,13 +11,6 @@ namespace Lanche.Redis.RedisCache
     [DependsOn(typeof(CacheModule))]
     public class RedisCacheModule : Module
     {
-        public override void PreInitialize()
-        {
-            base.PreInitialize();
-        }
-        public override void Initialize()
-        {
-            this.IocManager.Register<RedisCacheConst>();
-        }
+      
     }
 }

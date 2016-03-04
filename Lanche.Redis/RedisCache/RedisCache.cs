@@ -16,10 +16,6 @@ namespace Lanche.Redis.RedisCache
     {
         private readonly ConnectionMultiplexer _connectionMultiplexer;
         /// <summary>
-        /// 默认 redis 缓存 key
-        /// </summary>
-        private readonly RedisCacheConst _cacheConst;
-        /// <summary>
         /// 异步互斥锁
         /// </summary>
 
@@ -43,11 +39,11 @@ namespace Lanche.Redis.RedisCache
         /// <summary>
         /// Constructor.
         /// </summary>
-        public RedisCache(string name, IRedisConnectionProvider redisConnectionProvider, RedisCacheConst redisConst)
+        public RedisCache(string name, IRedisConnectionProvider redisConnectionProvider)
             : base(name)
         {
-            _cacheConst = redisConst;
-            var connectionString = redisConnectionProvider.GetConnectionString(_cacheConst.RedisConnectionName);
+ 
+            var connectionString = redisConnectionProvider.GetConnectionString(RedisCacheConst.RedisConnectionName);
             _connectionMultiplexer = redisConnectionProvider.GetConnection(connectionString);
         }
         public override object GetOrDefault(string key)

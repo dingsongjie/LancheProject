@@ -1,6 +1,6 @@
 # LancheProject
 asp.net web 开发框架  
-基于 .net framework 4.5.1 ，owin , asp.net mvc 5 ,asp.net web api 2  , ef 6 , mongodb , redis, rabbitmq, log4net 帮助开发人员快速开发web后端，减少工作量，以专注业务层的建设。
+基于 .net framework 4.5.1 ，owin , asp.net mvc 5 ,asp.net web api 2  , ef 6 , mongodb , redis, rabbitmq, log4net 帮助开发人员快速开发web后端，减少工作量，以专注业务层的建设。目前后台和前端的交互只支持json ,而且LancheProject 没有 提供前端框架 ,但是 不久就会新开一个项目 提供基架生成curd前端代码，并在不久提供基于LancheProject的权限框架。
 
 
 ## 框架使用
@@ -27,8 +27,10 @@ asp.net web 开发框架
         }
     }
 </code></pre>
+在 iis 下运行 必须添加 Microsoft.Owin.Host.SystemWeb   不然 startup会被跳过
 ##简单示例
-一个简单的框架使用示例
+一个简单的框架使用[示例](https://github.com/dingsongjie/SimpleWithLanche)
+
 ###UnitOfWork  数据库连接及分布式事务管理
 默认事务是关闭的，以提高数据库访问效率
 <pre>
@@ -698,7 +700,8 @@ log4net 配置
 示例
 <pre>
     <code>
-        //因为 此 Biz 名称 为   Test  ApplicationBiz之前的字符串将作为Biz地址开放
+        //因为 此 Biz 名称 为  
+         Test  ApplicationBiz之前的字符串将作为Biz地址开放,
          // 所以 此 Biz 地址 localhost://api/services/test/test/     
     public class TestApplicationBiz : ApplicationBizBase
     {
