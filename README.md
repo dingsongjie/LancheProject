@@ -29,11 +29,11 @@ asp.net web 开发框架
 </code></pre>
 在 iis 下运行 必须添加 Microsoft.Owin.Host.SystemWeb   不然 startup会被跳过
 ##简单示例
-<pre>
+
     一个简单的框架使用[示例](https://github.com/dingsongjie/SimpleWithLanche) 
-</pre>
 
 
+<pre>..</pre>
 ### UnitOfWork  数据库连接及分布式事务管理
 默认事务是关闭的，以提高数据库访问效率
 <pre>
