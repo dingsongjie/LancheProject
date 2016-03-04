@@ -27,7 +27,7 @@ namespace BizTest
         public override void Initialize()
         {
             DynamicApiControllerBuilder.ForAll<ApplicationBizBase>(Assembly.GetExecutingAssembly(), "test").Build();
-            RabbitConnectionInfo.Default = new RabbitConnectionInfo("localhost", "/", "guest", "guest", 5672);
+           // RabbitConnectionInfo.Default = new RabbitConnectionInfo("localhost", "/", "guest", "guest", 5672);
             
             
         }

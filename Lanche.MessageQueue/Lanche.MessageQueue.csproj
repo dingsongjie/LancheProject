@@ -45,7 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMqChannelClient.cs" />
+    <Compile Include="Abstractions\IConnectionInfoProvider.cs" />
+    <Compile Include="Abstractions\IMessageQueryManager.cs" />
+    <Compile Include="Abstractions\IMqChannel.cs" />
+    <Compile Include="ConnectionInfo.cs" />
+    <Compile Include="ConnectionInfoProvider.cs" />
     <Compile Include="MessageQueueModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

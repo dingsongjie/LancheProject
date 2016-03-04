@@ -11,6 +11,9 @@ namespace Lanche.RabbitMq.Configuration
         private Encoding _bodyEncoding = Encoding.UTF8;
         private bool _automaticRecovery = true;
         private TimeSpan _networkRecoveryInterval = TimeSpan.FromSeconds(5);
+        /// <summary>
+        /// 编码
+        /// </summary>
         public Encoding BodyEncoding
         {
             get
@@ -23,7 +26,9 @@ namespace Lanche.RabbitMq.Configuration
             }
         }
 
-
+        /// <summary>
+        /// 是否自动回收
+        /// </summary>
         public bool AutomaticRecovery
         {
             get
@@ -35,7 +40,9 @@ namespace Lanche.RabbitMq.Configuration
                 _automaticRecovery = value;
             }
         }
-
+        /// <summary>
+        /// 链接 自动回收间隔
+        /// </summary>
         public TimeSpan NetworkRecoveryInterval
         {
             get

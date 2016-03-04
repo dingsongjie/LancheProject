@@ -1,4 +1,5 @@
 ﻿using Lanche.Core.Module;
+using Lanche.MessageQueue.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,6 @@ namespace Lanche.MessageQueue
 {
     public class MessageQueueModule : Module
     {
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
+       
     }
 }

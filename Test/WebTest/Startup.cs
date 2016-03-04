@@ -9,6 +9,7 @@ using System.Web.Optimization;
 using Lanche.Log;
 using Lanche.MemoryCache;
 using Lanche.Redis.RedisCache;
+using Lanche.RabbitMq;
 
 [assembly: OwinStartup(typeof(WebTest.Startup))]
 namespace WebTest
@@ -23,8 +24,14 @@ namespace WebTest
                .UseLog4Net("log4net.config")
                 /// cache
                .UseMemoryCache()
-               ///    这里 use 两个缓存  后者覆盖前者
-               .UseRedisCache();
+                ///    这里 use 两个缓存  后者覆盖前者
+               .UseRedisCache()
+               .UseRabbitMq()
+               .UseMqConnection(
+               new Lanche.MessageQueue.ConnectionInfo("test1", "localhost", "/", "guest", "guest", 5672));
+               
+               
+               
                 
             
         }

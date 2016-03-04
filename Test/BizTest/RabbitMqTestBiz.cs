@@ -1,5 +1,6 @@
 ﻿using Lanche.DynamicWebApi.Application;
 using Lanche.MessageQueue;
+using Lanche.MessageQueue.Abstractions;
 using Lanche.RabbitMq;
 using Lanche.RabbitMq.Configuration;
 using System;
@@ -13,17 +14,18 @@ namespace BizTest
 {
     public class RabbitMqTestBiz : ApplicationBizBase
     {
-        private readonly IMqChannel _mqCannel;
+        private readonly IMessageQueryManager _manager;
         private readonly IRabbitMqConfiguration _con;
-        public RabbitMqTestBiz(IMqChannel mqCannel, IRabbitMqConfiguration con)
+        public RabbitMqTestBiz(IMessageQueryManager manager)
         {
-            this._mqCannel = mqCannel;
-            _con = con;
+            this._manager = manager;
+            
         }
         public void Send()
         {
-            _mqCannel.Send("test", "hellow");
-            _mqCannel.Dispose();
+            var channel = _manager.GetChannal("test1");
+            channel.Send("test", "hellow");
+            //_manager.Dispose();
           
         }
     }

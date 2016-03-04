@@ -12,17 +12,10 @@ namespace Lanche.RabbitMq
 {
     public class RabbitMqChannel : IMqChannel,Lanche.Core.Dependency.ITransientDependency
     {
-        private readonly IRabbitMqConfiguration _configuration;
+        public IRabbitMqConfiguration Configuration{get;set;}
 
-        public IConnection Conncetion { get; set; }
-        public RabbitMqChannel(IRabbitMqConfiguration configuration,RabbitConnector connector )
-        {
-            this.Conncetion = connector.Connect(RabbitConnectionInfo.Default);
-            
-            this._configuration = configuration;
-        }
-        public Encoding MessageEncoding { get { return _configuration.BodyEncoding; } }
-        public IModel Cannel { get{return Conncetion.CreateModel(); }  }
+        public Encoding MessageEncoding { get { return Configuration.BodyEncoding; } }
+        public IModel Cannel { get; set; }
         public void Send(QueueOption queueOption, string message)
         {
             this.Cannel.QueueDeclare(queueOption.QueueName
@@ -52,9 +45,8 @@ namespace Lanche.RabbitMq
             this.Cannel.BasicPublish("", option.QueueName, properties, body);
         }
         public void Dispose()
-        {
-            //Cannel.Dispose();
-            Conncetion.Dispose();
+        {           
+            Cannel.Dispose();
         }
 
 

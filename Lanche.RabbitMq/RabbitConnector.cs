@@ -1,4 +1,5 @@
 ﻿using Lanche.Core.Dependency;
+using Lanche.MessageQueue;
 using Lanche.RabbitMq.Configuration;
 using RabbitMQ.Client;
 using System;
@@ -17,7 +18,7 @@ namespace Lanche.RabbitMq
             _rabbitMqConfiguration=rabbitMqConfiguration;
         }
 
-        public  IConnection Connect(RabbitConnectionInfo connectionInfo)
+        public  IConnection Connect(ConnectionInfo connectionInfo)
         {
             var connFactory = new ConnectionFactory()
             {
