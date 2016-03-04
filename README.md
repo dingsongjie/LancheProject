@@ -100,9 +100,10 @@ asp.net web 开发框架
 </pre>
 配置连接字符串
 <pre>
-<code>
-    <add name="TestDbContext" connectionString="server=.;database=AbpTest;uid=sa;pwd=123456" providerName="System.Data.SqlClient" />
-</code>
+   <code>
+   
+       <add name="TestDbContext" connectionString="server=.;database=AbpTest;uid=sa;pwd=123456" providerName="System.Data.SqlClient" />
+   </code>
 </pre>
 
 ###创建业务层
