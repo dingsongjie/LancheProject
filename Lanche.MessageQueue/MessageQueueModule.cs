@@ -10,6 +10,9 @@ namespace Lanche.MessageQueue
 {
     public class MessageQueueModule : Module
     {
-       
+        public override void PreInitialize()
+        {
+            IocManager.IocContainer.Install(new MqInstaller());
+        }
     }
 }

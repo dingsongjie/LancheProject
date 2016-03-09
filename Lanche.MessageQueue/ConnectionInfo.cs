@@ -8,12 +8,12 @@ namespace Lanche.MessageQueue
 {
    public class ConnectionInfo
     {
-       public string Name { get; private set; }
-        public string HostName { get; private set; }
-        public string VirtualHost { get; private set; }
-        public string UserName { get; private set; }
-        public string Password { get; private set; }
-        public int Port { get; private set; }
+       public string Name { get;  set; }
+        public string HostName { get;  set; }
+        public string VirtualHost { get;  set; }
+        public string UserName { get;  set; }
+        public string Password { get;  set; }
+        public int Port { get;  set; }
 
         public ConnectionInfo(string name,string hostName, string virtualHost, string userName, string password, int port)
         {
@@ -23,6 +23,10 @@ namespace Lanche.MessageQueue
             UserName = userName;
             Password = password;
             Port = port;
+        }
+       public ConnectionInfo()
+        {
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Lanche.Core.Dependency;
+﻿using Lanche.Abstractions.MessageQueue;
+using Lanche.Core.Dependency;
 using Lanche.MessageQueue;
 using Lanche.MessageQueue.Abstractions;
 using Owin;
@@ -17,11 +18,14 @@ namespace Lanche.RabbitMq
            IocManager.Instance.Replace<IMessageQueryManager, RabbitMqManager>(DependencyLifeStyle.Multiple);
            return appBuilder;
        }
-       public static IAppBuilder UseMqConnection(this IAppBuilder appBuilder,ConnectionInfo connectionInfo)
+       public static IAppBuilder UseMqConnection(this IAppBuilder appBuilder, string connectionName)
        {
           var provider= IocManager.Instance.Resolve<IConnectionInfoProvider>();
-          provider.SetConnectionInfo(connectionInfo);
+          var resolver = IocManager.Instance.Resolve<IMqConnectionSlover>();
+          var info = resolver.GetConnectionInfo(connectionName);
+          provider.SetConnectionInfo(info);
           IocManager.Instance.Release(provider);
+          IocManager.Instance.Release(resolver);
           return appBuilder;
        }
     }

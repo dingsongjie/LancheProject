@@ -27,8 +27,7 @@ namespace WebTest
                 ///    这里 use 两个缓存  后者覆盖前者
                .UseRedisCache("Lanche.Redis.Cache")
                .UseRabbitMq()
-               .UseMqConnection(
-               new Lanche.MessageQueue.ConnectionInfo("test1", "localhost", "/", "guest", "guest", 5672));
+               .UseMqConnection("test1");
 
 
                
