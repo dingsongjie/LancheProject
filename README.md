@@ -40,7 +40,7 @@ asp.net web 开发框架
 ## UnitOfWork  数据库连接及分布式事务管理
 默认事务是关闭的，以提高数据库访问效率
 ```c#
-           public class TestApplicationBiz : ApplicationBizBase
+        public class TestApplicationBiz : ApplicationBizBase
     {
         private readonly IEfRepository<Students> _studentRepository;
         private readonly IUnitOfWorkManager _uowManger;
@@ -130,7 +130,7 @@ asp.net web 开发框架
 ###Repository 提供的方法
 查询 
 ```c#
-         /// <summary>
+        /// <summary>
         /// 得到 IQueryable ,以提供linq 查询能力
         /// </summary>
         /// <returns></returns>
@@ -210,7 +210,7 @@ asp.net web 开发框架
         /// <returns>包含所有分页信息的数据传递对象</returns>
         Task<PagingEntity<TEntity>> GetInPagingAsync(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, bool sort = true);
 
-         /// <summary>
+        /// <summary>
         /// 提供 sql 语句查询能力
         /// </summary>
         /// <typeparam name="TResult"></typeparam>
@@ -265,13 +265,13 @@ asp.net web 开发框架
 ```
 新增
 ```c#
-         ///同步 添加单个
+        ///同步 添加单个
         TEntity Insert(TEntity entity);
 
         ///异步 添加单个
         Task<TEntity> InsertAsync(TEntity entity);
 
-         /// <summary>
+        /// <summary>
         /// 批量添加
         /// </summary>
         /// <param name="entities"></param>
@@ -290,10 +290,10 @@ asp.net web 开发框架
 更新
 ```c#
         /// <summary>
-       /// 更新 单个 同步
-       /// </summary>
-       /// <param name="entity"></param>
-       /// <returns></returns>
+        /// 更新 单个 同步
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         TEntity Update(TEntity entity);
 
         /// <summary>
@@ -321,10 +321,10 @@ asp.net web 开发框架
 ```
 删除
 ```c#
-         /// <summary>
-       /// 删除单个实体
-       /// </summary>
-       /// <param name="entity"></param>
+        /// <summary>
+        /// 删除单个实体
+        /// </summary>
+        /// <param name="entity"></param>
         void Delete(TEntity entity);
         /// <summary>
         /// 删除单个实体 异步
@@ -395,10 +395,10 @@ asp.net web 开发框架
 ###mongodb IMongoDbRepository 提供的方法
 查询
 ```c#
-         /// <summary>
-     /// 得到 IQueryable ,以提供linq 查询能力
-     /// </summary>
-     /// <returns></returns>
+        /// <summary>
+        /// 得到 IQueryable ,以提供linq 查询能力
+        /// </summary>
+        /// <returns></returns>
         IQueryable<TEntity> GetAll();
 
         /// <summary>
@@ -520,7 +520,7 @@ asp.net web 开发框架
 
         Task<TEntity> InsertAsync(TEntity entity);
 
-          void InsertMany(IEnumerable<TEntity> entities);
+        void InsertMany(IEnumerable<TEntity> entities);
 
         Task InsertManyAsync(IEnumerable<TEntity> entities);
 ```
@@ -540,7 +540,7 @@ asp.net web 开发框架
         /// <returns></returns>
         Task<TEntity> UpdateAsync(TEntity entity);
 
-         int Update(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TEntity>> update);
+        int Update(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TEntity>> update);
 
         Task<int> UpdateAsync(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TEntity>> update);
 ```
@@ -566,7 +566,7 @@ asp.net web 开发框架
 ###Log
 log4net 配置
 ```xml
-        <?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <log4net>
   <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender" >
     <file value="Logs/Logs.txt" />
@@ -588,7 +588,7 @@ log4net 配置
 ```
 使用代码
 ```c#
-         public class TestApplicationBiz : ApplicationBizBase
+        public class TestApplicationBiz : ApplicationBizBase
     {
         private readonly IEfRepository<Students> _studentRepository;
         private readonly IUnitOfWorkManager _uowManger;
@@ -604,7 +604,7 @@ log4net 配置
         
         public virtual PagingEntity<Students> GetInPaging(int pageIndex, int PageSize, bool sort, string orderProperty)
         {
-           /// debug 级别的 日志
+            /// debug 级别的 日志
             _logger.Debug("ss");
             return _studentRepository.GetInPaging(m => m.IsDeleted == false, pageIndex, PageSize, orderProperty, sort);
 
@@ -613,7 +613,7 @@ log4net 配置
 ```
 ### Cache
 ```c#
-         public class CacheTestBiz : ApplicationBizBase
+        public class CacheTestBiz : ApplicationBizBase
     {
         private readonly ICacheManager cacheManager;
 
@@ -661,18 +661,18 @@ log4net 配置
 ### 业务层动态生成WebApi层
 注册
 ```c#
-     // 默认url 为  /api/services
+         // 默认url 为  /api/services
          DynamicApiControllerBuilder.ForAll<ApplicationBizBase>(Assembly.GetExecutingAssembly(), "test").Build();
          // 现在url 为  /api/services/test
-        //最终  url 为  /api/services/test/{BizName}/{ActionName}
+         //最终  url 为  /api/services/test/{BizName}/{ActionName}
 ```
 示例
 ```c#
         //因为 此 Biz 名称 为  
-         Test  ApplicationBiz之前的字符串将作为Biz地址开放,
-         // 所以 此 Biz 地址 localhost://api/services/test/test/     
-    public class TestApplicationBiz : ApplicationBizBase
-    {
+        Test  ApplicationBiz之前的字符串将作为Biz地址开放,
+        // 所以 此 Biz 地址 localhost://api/services/test/test/     
+        public class TestApplicationBiz : ApplicationBizBase
+        {
         private readonly IEfRepository<Students> _studentRepository;
         private readonly IUnitOfWorkManager _uowManger;
         private readonly ILogger _logger;
@@ -702,7 +702,7 @@ log4net 配置
 ```
 ###MessageQueue
 ```c#
-          public class RabbitMqTestBiz : ApplicationBizBase
+        public class RabbitMqTestBiz : ApplicationBizBase
     {
         private readonly IMessageQueryManager _manager;
  
