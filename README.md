@@ -116,9 +116,9 @@ asp.net web 开发框架
 ```
 
 ###创建业务层
-业务层  必须继承自 ApplicationBizBase  以获得作为公开服务的能力名</br>
+业务层  必须继承自 ApplicationBizBase  以获得作为公开服务的能力</br>
 这里可以照常使用 webapi 2中的 IFliters,作为过滤器,所有继承自 ApplicationBizBase 的类 路由，参数绑定，都由 webApi提供，但路由规则和mvc controller 类似，约定<br>
-{xxxxxx}ApplicationBiz  或者  {xxxxxx}Biz   最终的url则为   /api/services/{custom}/xxxxxx/action，具体信息请看下文DynamicWebApi介绍
+{xxxxxx}ApplicationBiz  或者  {xxxxxx}Biz   最终的url则为   /api/services/{custom}/xxxxxx/action，具体信息请看下文DynamicWebApi介绍<br>
 Biz 即 业务的意思
 ```c#
     ///  using Lanche.DynamicWebApi.Application;
@@ -259,19 +259,19 @@ Biz 即 业务的意思
         Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
-        /// 当个数超过 2^32-1
+        /// 当个数超过 2^31-1
         /// </summary>
         /// <returns>Count of entities</returns>
         long LongCount();
 
         /// <summary>
-        /// 当个数超过 2^32-1
+        /// 当个数超过 2^31-1
         /// </summary>
         /// <returns>Count of entities</returns>
         Task<long> LongCountAsync();
 
         /// <summary>
-        /// 当个数超过 2^32-1
+        /// 当个数超过 2^31-1
         /// </summary>
         /// <returns>Count of entities</returns>
         long LongCount(Expression<Func<TEntity, bool>> predicate);
@@ -509,19 +509,19 @@ Biz 即 业务的意思
         Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
-        /// 当个数超过 2^32-1
+        /// 当个数超过 2^31-1
         /// </summary>
         /// <returns>Count of entities</returns>
         long LongCount();
 
         /// <summary>
-        /// 当个数超过 2^32-1
+        /// 当个数超过 2^31-1
         /// </summary>
         /// <returns>Count of entities</returns>
         Task<long> LongCountAsync();
 
         /// <summary>
-        /// 当个数超过 2^32-1
+        /// 当个数超过 2^31-1
         /// </summary>
         /// <returns>Count of entities</returns>
         long LongCount(Expression<Func<TEntity, bool>> predicate);
