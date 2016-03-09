@@ -6,7 +6,7 @@ asp.net web 开发框架
 
 ## 框架使用
 下载框架代码，并引入依赖项，然后在startup中配置
-<pre><code>
+
   ```c#
    public class Startup
     {
@@ -28,8 +28,7 @@ asp.net web 开发框架
         }
     }
 ```
-</code>
-</pre>
+
 在 iis 下运行 必须添加 Microsoft.Owin.Host.SystemWeb   不然 startup会被跳过
 ##简单示例
 
