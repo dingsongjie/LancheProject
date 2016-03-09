@@ -39,8 +39,7 @@ asp.net web 开发框架
 
 ## UnitOfWork  数据库连接及分布式事务管理
 默认事务是关闭的，以提高数据库访问效率
-<pre>
-    <code>
+```c#
            public class TestApplicationBiz : ApplicationBizBase
     {
         private readonly IEfRepository<Students> _studentRepository;
@@ -70,12 +69,10 @@ asp.net web 开发框架
         }
 
     }
-    </code>
-</pre>
+```
 ###以EntityFramework作为传统sql数据库访问层
 首先创建DbContext
-<pre>
-    <code>
+```c#
     ///引用 using Lanche.Entityframework.UnitOfWork 命名空间
      public  class TestDbContext : DbContextBase   
     {
@@ -99,19 +96,15 @@ asp.net web 开发框架
 
         public int Age { get; set; }
     }
-    </code>
-</pre>
+```
 配置连接字符串
-<pre>
-   <code>
+```xml
 
        <add name="TestDbContext" connectionString="server=.;database=AbpTest;uid=sa;pwd=123456" providerName="System.Data.SqlClient" />
-   </code>
-</pre>
+```
 
 ###创建业务层
-<pre>
-    <code>
+```c#
     ///  using Lanche.DynamicWebApi.Application;
          public class TestApplicationBiz : ApplicationBizBase
     {
@@ -133,12 +126,10 @@ asp.net web 开发框架
 
         }
     }
-    </code>
-</pre>
+```
 ###Repository 提供的方法
 查询 
-<pre>
-    <code>
+```c#
          /// <summary>
         /// 得到 IQueryable ,以提供linq 查询能力
         /// </summary>
@@ -271,11 +262,9 @@ asp.net web 开发框架
 
         Task<long> LongCountAsync(Expression<Func<TEntity, bool>> predicate);
 
-    </code>
-</pre>
+```
 新增
-<pre>
-    <code>
+```c#
          ///同步 添加单个
         TEntity Insert(TEntity entity);
 
@@ -297,11 +286,9 @@ asp.net web 开发框架
         /// <param name="bulkSize"></param>
 
         void BulkInsert(IEnumerable<TEntity> entities, int? bulkSize=null);
-    </code>
-</pre>
+```
 更新
-<pre>
-    <code>
+```c#
         /// <summary>
        /// 更新 单个 同步
        /// </summary>
@@ -331,11 +318,9 @@ asp.net web 开发框架
         /// <param name="update"></param>
         /// <returns></returns>
         Task<int> UpdateAsync(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TEntity>> update);
-    </code>
-</pre>
+```
 删除
-<pre>
-    <code>
+```c#
          /// <summary>
        /// 删除单个实体
        /// </summary>
@@ -361,13 +346,11 @@ asp.net web 开发框架
         /// <param name="filter"></param>
         /// <returns></returns>
         Task<int> DeleteAsync(Expression<Func<TEntity, bool>> filter);
-    </code>
-</pre>
+```
 ###mongodb 
 系统中部分数据可能用mongodb储存，LancheProject实现了mongodb存储的简单实现
 首先添加MongoDbContext
-<pre>
-    <code>
+```c#
     /// using Lanche.MongoDB.DbContext;
          public class FeturnMongoDbContext:MongoDbContext
     {
@@ -386,17 +369,13 @@ asp.net web 开发框架
         public string Name{get;set;}
         
     }
-    </code>
-</pre>
+```
 配置连接字符串
-<pre>
-    <code>
+```xml
         <add name="Feture" connectionString="mongodb://localhost:27017" />  ///未设置账号密码
-    </code>
-</pre>
+```
 直接在 业务层的使用
-<pre>
-    <code>
+```c#
         public class MongoDbTestBiz : ApplicationBizBase
     {
         private readonly IMongoDbRepository<Car> _carRepository;
@@ -412,12 +391,10 @@ asp.net web 开发框架
            return _carRepository.Single(m => m.Name =="Alto");
         }
     }
-    </code>
-</pre>
+```
 ###mongodb IMongoDbRepository 提供的方法
 查询
-<pre>
-    <code>
+```c#
          /// <summary>
      /// 得到 IQueryable ,以提供linq 查询能力
      /// </summary>
@@ -461,11 +438,11 @@ asp.net web 开发框架
         T Query<T>(Func<IQueryable<TEntity>, T> queryMethod);
 
 
-      /// <summary>
-      /// 返回单个，找到多个 直接报错
-      /// </summary>
-      /// <param name="predicate">where 条件</param>
-      /// <returns></returns>
+        /// <summary>
+        /// 返回单个，找到多个 直接报错
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        /// <returns></returns>
         TEntity Single(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
         /// 返回单个，找到多个 直接报错
@@ -534,11 +511,9 @@ asp.net web 开发框架
         long LongCount(Expression<Func<TEntity, bool>> predicate);
 
         Task<long> LongCountAsync(Expression<Func<TEntity, bool>> predicate);
-    </code>
-</pre>
+```
 新增
-<pre>
-    <code>
+```c#
         
         TEntity Insert(TEntity entity);
 
@@ -548,16 +523,14 @@ asp.net web 开发框架
           void InsertMany(IEnumerable<TEntity> entities);
 
         Task InsertManyAsync(IEnumerable<TEntity> entities);
-    </code>
-</pre>
+```
 更新
-<pre>
-    <code>
-         /// <summary>
-       /// 更新 单个 同步
-       /// </summary>
-       /// <param name="entity"></param>
-       /// <returns></returns>
+```c#
+        /// <summary>
+        /// 更新 单个 同步
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         TEntity Update(TEntity entity);
 
         /// <summary>
@@ -570,15 +543,13 @@ asp.net web 开发框架
          int Update(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TEntity>> update);
 
         Task<int> UpdateAsync(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TEntity>> update);
-    </code>
-</pre>
+```
 删除
-<pre>
-    <code>
-         /// <summary>
-       /// 删除单个实体
-       /// </summary>
-       /// <param name="entity"></param>
+```c#
+        /// <summary>
+        /// 删除单个实体
+        /// </summary>
+        /// <param name="entity"></param>
         void Delete(TEntity entity);
         /// <summary>
         /// 删除单个实体 异步
@@ -588,15 +559,13 @@ asp.net web 开发框架
 
         Task DeleteAsync(TEntity entity);
 
-          int Delete(Expression<Func<TEntity, bool>> filter);
+        int Delete(Expression<Func<TEntity, bool>> filter);
 
         Task<int> DeleteAsync(Expression<Func<TEntity, bool>> filter);
-    </code>
-</pre>
+```
 ###Log
 log4net 配置
-<pre>
-    <code>
+```xml
         <?xml version="1.0" encoding="utf-8" ?>
 <log4net>
   <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender" >
@@ -616,11 +585,9 @@ log4net 配置
   </root>
  
 </log4net>
-    </code>
-</pre>
+```
 使用代码
-<pre>
-    <code>
+```c#
          public class TestApplicationBiz : ApplicationBizBase
     {
         private readonly IEfRepository<Students> _studentRepository;
@@ -643,11 +610,9 @@ log4net 配置
 
         }
     }
-    </code>
-</pre>
+```
 ### Cache
-<pre>
-    <code>
+```c#
          public class CacheTestBiz : ApplicationBizBase
     {
         private readonly ICacheManager cacheManager;
@@ -692,21 +657,17 @@ log4net 配置
             return value;
         }
     }
-    </code>
-</pre>
+```
 ### 业务层动态生成WebApi层
 注册
-<pre>
-    <code>
+```c#
      // 默认url 为  /api/services
          DynamicApiControllerBuilder.ForAll<ApplicationBizBase>(Assembly.GetExecutingAssembly(), "test").Build();
          // 现在url 为  /api/services/test
         //最终  url 为  /api/services/test/{BizName}/{ActionName}
-    </code>
-</pre>
+```
 示例
-<pre>
-    <code>
+```c#
         //因为 此 Biz 名称 为  
          Test  ApplicationBiz之前的字符串将作为Biz地址开放,
          // 所以 此 Biz 地址 localhost://api/services/test/test/     
@@ -738,11 +699,9 @@ log4net 配置
             return v;
         }
     }
-    </code>
-</pre>
+```
 ###MessageQueue
-<pre>
-    <code>
+```c#
           public class RabbitMqTestBiz : ApplicationBizBase
     {
         private readonly IMessageQueryManager _manager;
@@ -760,8 +719,7 @@ log4net 配置
           
         }
     }
-    </code>
-</pre>
+```
 
 
 
