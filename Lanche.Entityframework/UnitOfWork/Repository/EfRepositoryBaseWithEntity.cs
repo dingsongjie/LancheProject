@@ -210,7 +210,8 @@ namespace Lanche.Entityframework.UnitOfWork.Repository
                 Entities = entities,
                 MaxPage = maxPage,
                 PageIndex = pageIndex,
-                PageSize = pageSize
+                PageSize = pageSize,
+                EntityTotalCount = count
             };
             return result;
         }

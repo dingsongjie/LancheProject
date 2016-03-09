@@ -132,7 +132,8 @@ namespace Lanche.Domain.Repository
                 Entities = entities,
                 MaxPage = maxPage,
                 PageIndex = pageIndex,
-                PageSize = pageSize
+                PageSize = pageSize,
+                EntityTotalCount = count
             };
             return result;
         }

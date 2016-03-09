@@ -14,7 +14,7 @@ namespace Lanche.Domain.Repository.Paging
         public int PageIndex { get; set; }
         public int PageSize { get; set; }
         public List<TEntity> Entities { get; set; }
-        public int EntityCount { get; set; }
+        public int EntityTotalCount { get; set; }
        
         public int MaxPage { get; set; }
     }
