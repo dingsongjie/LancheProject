@@ -5,14 +5,15 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Lanche.dfwqdwqdwqd")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Lanche.Cache")]
+[assembly: AssemblyDescription("LancheProject 缓存组件")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Lanche.dfwqdwqdwqd")]
+[assembly: AssemblyCompany("dsj")]
+[assembly: AssemblyProduct("Lanche.Cache")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+
 
 // 将 ComVisible 设置为 false 使此程序集中的类型
 // 对 COM 组件不可见。  如果需要从 COM 访问此程序集中的类型，

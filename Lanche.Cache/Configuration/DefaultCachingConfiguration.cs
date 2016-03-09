@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Immutable;
 
 namespace Lanche.Cache.Configuration
 {
@@ -11,7 +10,7 @@ namespace Lanche.Cache.Configuration
     {
          public IReadOnlyList<ICacheConfigurator> Configurators
         {
-            get { return _configurators.ToImmutableList(); }
+            get { return _configurators.ToList(); }
         }
         private readonly List<ICacheConfigurator> _configurators;
 

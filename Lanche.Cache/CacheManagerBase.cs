@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Immutable;
 
 namespace Lanche.Cache
 {
@@ -46,7 +45,7 @@ namespace Lanche.Cache
         /// <returns></returns>
         public IReadOnlyList<ICache> GetAllCaches()
         {
-            return Caches.Values.ToImmutableList();
+            return Caches.Values.ToList();
         }
         /// <summary>
         /// 根据 name 得到 cache

@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Lanche.Core")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("LancheProject 核心")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("dsj")]
 [assembly: AssemblyProduct("Lanche.Core")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]

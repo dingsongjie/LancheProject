@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Lanche.Dynamic")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Lanche.DynamicWebApi")]
+[assembly: AssemblyDescription("LancheProject api")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Lanche.Dynamic")]
+[assembly: AssemblyCompany("dsj")]
+[assembly: AssemblyProduct("Lanche.DynamicWebApi")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

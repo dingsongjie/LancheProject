@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Lanche.UnitOfWork.Entityframework")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Lanche.Entityframework")]
+[assembly: AssemblyDescription("LancheProject 关系数据库访问")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Lanche.UnitOfWork.Entityframework")]
+[assembly: AssemblyCompany("dsj")]
+[assembly: AssemblyProduct("Lanche.Entityframework")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
