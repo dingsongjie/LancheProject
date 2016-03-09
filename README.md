@@ -7,7 +7,8 @@ asp.net web 开发框架
 ## 框架使用
 下载框架代码，并引入依赖项，然后在startup中配置
 <pre><code>
- public class Startup
+  ```c#
+   public class Startup
     {
         public void Configuration(IAppBuilder app)
         {
@@ -22,16 +23,17 @@ asp.net web 开发框架
                /// 消息队列
                .UseRabbitMq()
                ///创建一个消息队列的连接
-               .UseMqConnection(
-               new Lanche.MessageQueue.ConnectionInfo("test1", "localhost", "/", "guest", "guest", 5672));
+               .UseMqConnection("test1");
                               
         }
     }
-</code></pre>
+```
+</code>
+</pre>
 在 iis 下运行 必须添加 Microsoft.Owin.Host.SystemWeb   不然 startup会被跳过
 ##简单示例
 
-    一个简单的框架使用[示例](https://github.com/dingsongjie/SimpleWithLanche) 
+一个简单的框架使用[示例](https://github.com/dingsongjie/SimpleWithLanche) 
 
 
 <pre>..</pre>
@@ -139,9 +141,9 @@ asp.net web 开发框架
 <pre>
     <code>
          /// <summary>
-     /// 得到 IQueryable ,以提供linq 查询能力
-     /// </summary>
-     /// <returns></returns>
+        /// 得到 IQueryable ,以提供linq 查询能力
+        /// </summary>
+        /// <returns></returns>
         IQueryable<TEntity> GetAll();
 
         /// <summary>
@@ -172,10 +174,10 @@ asp.net web 开发框架
         /// <returns>实体 list</returns>
         Task<List<TEntity>> GetAllListAsync(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
-      /// 返回单个，找到多个 直接报错
-      /// </summary>
-      /// <param name="predicate">where 条件</param>
-      /// <returns></returns>
+        /// 返回单个，找到多个 直接报错
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        /// <returns></returns>
         TEntity Single(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
         /// 返回单个，找到多个 直接报错
