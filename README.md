@@ -1,6 +1,6 @@
 # LancheProject
 asp.net web 开发框架  
-基于 .net framework 4.5.1 ，owin , asp.net mvc 5 ,asp.net web api 2 ,castle windsor 3 , ef 6 , mongodb , redis, rabbitmq, log4net 帮助开发人员快速开发web后端，减少工作量，以专注业务层的建设。目前后台和前端的交互只支持json ,而且LancheProject 没有 提供前端框架 ,但是 不久就会新开一个项目 提供基架生成curd前端代码，并在不久提供基于LancheProject的权限框架。
+基于 .net framework 4.5.1 ，owin , asp.net mvc 5 ,asp.net web api 2 ,castle windsor 3 , ef 6 , mongodb , redis, rabbitmq, log4net 帮助开发人员快速开发web后端，减少工作量，以专注业务层的建设。目前后台和前端的交互只支持json ,而且LancheProject 没有 提供前端框架 ,但是 不久就会新开一个项目 提供基架生成curd前端代码，并在不久提供基于LancheProject的权限框架 ，vs下直接Nuget搜索Lanche即可安装。</br>
 联系方式 : 腾讯QQ 377973147
 
 
@@ -22,12 +22,14 @@ asp.net web 开发框架
                .UseRedisCache()
                /// 消息队列
                .UseRabbitMq()
-               ///创建一个消息队列的连接
+               ///创建一个消息队列的连接  test1 连接字符串在web.config中配置
                .UseMqConnection("test1");
                               
         }
     }
 ```
+
+
 
 在 iis 下运行 必须添加 Microsoft.Owin.Host.SystemWeb   不然 startup会被跳过
 ##简单示例
@@ -35,9 +37,10 @@ asp.net web 开发框架
 一个简单的框架使用[示例](https://github.com/dingsongjie/SimpleWithLanche) 
 
 
-<pre>..</pre>
 
 ## UnitOfWork  数据库连接及分布式事务管理
+本MarkDown中的代码注入方式基本以构造函数注入为主，但是Castle windsor 也提供属性注入，二者选一即可</br>
+
 默认事务是关闭的，以提高数据库访问效率
 ```c#
         public class TestApplicationBiz : ApplicationBizBase
@@ -62,7 +65,7 @@ asp.net web 开发框架
 
             throw new Exception("dc");
         }
-          [UnitOfWork(IsDisabled=false)]  //关闭 UnitOfWork
+         [UnitOfWork(IsDisabled=false)]  //关闭 UnitOfWork
         public virtual Task<Students> GetOneAsync(string name)
         {
             return _studentRepository.SingleAsync(m => m.Name == name);
@@ -70,10 +73,18 @@ asp.net web 开发框架
 
     }
 ```
+     ```c#
+         /// 开启事务   此时整个方法在同一个事务中
+         [UnitOfWork(isTransactional: true)]
+     ```
+     ```c#
+          //关闭 UnitOfWork  此时这个方法不再受到 unitofwork的管理
+          [UnitOfWork(IsDisabled=false)] 
+     ```
 ###以EntityFramework作为传统sql数据库访问层
 首先创建DbContext
 ```c#
-    ///引用 using Lanche.Entityframework.UnitOfWork 命名空间
+    ///引用 using Lanche.Entityframework.UnitOfWork 命名空间，注意这里DbContext继承自DbContextBase，这里并不约束使用codefirst还是dbfirst,且不约束映射规则的实现方式
      public  class TestDbContext : DbContextBase   
     {
         public TestDbContext()
@@ -88,6 +99,7 @@ asp.net web 开发框架
 
         }
     }
+    //实体类
      public partial class Students
     {
         public Guid Id { get; set; }
@@ -104,6 +116,10 @@ asp.net web 开发框架
 ```
 
 ###创建业务层
+业务层  必须继承自 ApplicationBizBase  以获得作为公开服务的能力名</br>
+这里可以照常使用 webapi 2中的 IFliters,作为过滤器,所有继承自 ApplicationBizBase 的类 路由，参数绑定，都由 webApi提供，但路由规则和mvc controller 类似，约定<br>
+{xxxxxx}ApplicationBiz  或者  {xxxxxx}Biz   最终的url则为   /api/services/{custom}/xxxxxx/action，具体信息请看下文DynamicWebApi介绍
+Biz 即 业务的意思
 ```c#
     ///  using Lanche.DynamicWebApi.Application;
          public class TestApplicationBiz : ApplicationBizBase
@@ -564,7 +580,7 @@ asp.net web 开发框架
         Task<int> DeleteAsync(Expression<Func<TEntity, bool>> filter);
 ```
 ###Log
-log4net 配置
+log4net 配置 实例
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <log4net>
@@ -612,6 +628,7 @@ log4net 配置
     }
 ```
 ### Cache
+Lanche.Cache 的存储全部在string的基础上。对象会被序列化成json存储，当获取时又会自动反序列化，强烈建议  string 字符串作为Key，不然可能发生意想不到的结果
 ```c#
         public class CacheTestBiz : ApplicationBizBase
     {
@@ -650,10 +667,6 @@ log4net 配置
 
             var cache = cacheManager.GetOrCreateCache("test1");
             var value = await cache.GetOrCreateAsync<Car>("Id", new Car() { Id = Guid.NewGuid(), Name = "222" });
-            
-              
-
-
             return value;
         }
     }
@@ -661,7 +674,7 @@ log4net 配置
 ### 业务层动态生成WebApi层
 注册
 ```c#
-         // 默认url 为  /api/services
+         // 默认url 为  /api/services开头
          DynamicApiControllerBuilder.ForAll<ApplicationBizBase>(Assembly.GetExecutingAssembly(), "test").Build();
          // 现在url 为  /api/services/test
          //最终  url 为  /api/services/test/{BizName}/{ActionName}
