@@ -7,6 +7,7 @@ using Lanche.Entityframework.UnitOfWork.Repository;
 using Lanche.UnitOfWork;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -40,7 +41,7 @@ namespace Lanche.Entityframework
                      type.IsPublic &&
                      !type.IsAbstract &&
                      type.IsClass &&
-                     typeof(DbContextBase).IsAssignableFrom(type)
+                     typeof(DbContext).IsAssignableFrom(type)
                      );
 
              if (dbContextTypes.Count() <= 0)
