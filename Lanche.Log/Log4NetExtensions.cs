@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lanche.Log
+namespace Owin
 {
     public static class Log4NetExtensions
     {

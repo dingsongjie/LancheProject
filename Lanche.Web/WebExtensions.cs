@@ -1,5 +1,6 @@
 ﻿using Lanche.Core;
 using Lanche.Core.Reflection;
+using Lanche.Web;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lanche.Web
+namespace Owin
 {
     public static class WebExtensions
     {

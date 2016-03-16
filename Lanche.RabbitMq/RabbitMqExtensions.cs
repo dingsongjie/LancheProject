@@ -2,6 +2,7 @@
 using Lanche.Core.Dependency;
 using Lanche.MessageQueue;
 using Lanche.MessageQueue.Abstractions;
+using Lanche.RabbitMq;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lanche.RabbitMq
+namespace Owin
 {
    public static class RabbitMqExtensions
     {

@@ -1,5 +1,6 @@
 ﻿using Lanche.Cache;
 using Lanche.Core.Dependency;
+using Lanche.MemoryCache;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lanche.MemoryCache
+namespace Owin
 {
     public static class MemoryCacheExtensions
     {

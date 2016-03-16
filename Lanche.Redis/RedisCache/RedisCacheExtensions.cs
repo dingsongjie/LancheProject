@@ -1,5 +1,6 @@
 ﻿using Lanche.Cache;
 using Lanche.Core.Dependency;
+using Lanche.Redis.RedisCache;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lanche.Redis.RedisCache
+namespace Owin
 {
     public static class RedisCacheExtensions
     {
