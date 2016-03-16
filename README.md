@@ -12,7 +12,7 @@ asp.net web 开发框架
     {
         public void Configuration(IAppBuilder app)
         {
-            /// 框架应用入口    引用 using Lanche.Web 命名空间
+            
             app.UseLancheProject()
                 /// log   log4net 作为日志
                .UseLog4Net("log4net.config")
