@@ -40,6 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Entity\Auditing\Entity.cs" />
+    <Compile Include="Repository\Entity\Auditing\ICreationAudited.cs" />
+    <Compile Include="Repository\Entity\Auditing\IDeletionAudited.cs" />
+    <Compile Include="Repository\Entity\Auditing\IUpdationAudited.cs" />
+    <Compile Include="Repository\Entity\EntityBase.cs" />
+    <Compile Include="Repository\Entity\ISoftDelete.cs" />
     <Compile Include="Repository\IOutOfUnitOfWork.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\IRepositoryExtension.cs" />
