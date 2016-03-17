@@ -17,21 +17,12 @@ namespace Lanche.Domain.Repository
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="repository"></param>
         /// <param name="entity"></param>
-       public async static Task<TEntity> InsertOrUpdateAsync<TEntity>(this IRepository<TEntity> repository, TEntity entity) where TEntity : ICreationAudited<string>, new()
+       public async static Task<TEntity> InsertOrUpdateAsync<TEntity>(this IRepository<TEntity> repository, TEntity entity) where TEntity :EntityBase<string>, ICreationAudited<string> , new()
         {
 
-            var entityType = typeof(TEntity);
-            var entityIdInfp = entityType.GetProperty("ID");
-            if (entityIdInfp == null)
-            {
-                throw new Exception("该实体没有名为ID的 主键,不能使用此方法");
-            }
-            ParameterExpression pExpression = Expression.Parameter(entity.GetType(), "m");
-            MemberExpression keyExpression = Expression.Property(pExpression, "ID");
-            var expression = Expression.Equal(keyExpression, Expression.Constant(Convert.ToString(entityIdInfp.GetValue(entity))));
-            var lambda = Expression.Lambda<Func<TEntity, bool>>(expression, pExpression);
 
-            var dbEntity = await repository.FirstOrDefaultAsync(lambda);
+
+            var dbEntity = await repository.FirstOrDefaultAsync(m => m.Id == entity.Id);
             //新增
             if (dbEntity == null)
             {
@@ -51,7 +42,7 @@ namespace Lanche.Domain.Repository
        /// <typeparam name="TEntity"></typeparam>
        /// <param name="repository"></param>
        /// <param name="entity"></param>
-       public  static TEntity InsertOrUpdateAsync<TEntity>(this IRepository<TEntity> repository, TEntity entity) where TEntity : ICreationAudited<string>,EntityBase<string>, new()
+       public  static TEntity InsertOrUpdate<TEntity>(this IRepository<TEntity> repository, TEntity entity) where TEntity : EntityBase<string>,ICreationAudited<string>, new()
        {
      
            var dbEntity =  repository.FirstOrDefault(m=>m.Id==entity.Id);

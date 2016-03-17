@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lanche.Domain.Repository.Entity.Auditing
 {
-    interface ICreationAudited<TPrimaryKey>
+   public  interface ICreationAudited<TPrimaryKey>
     {
          TPrimaryKey CreateUesrId { get; set; }
           DateTime CreateTime { get; set; }
