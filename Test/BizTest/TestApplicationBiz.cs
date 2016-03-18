@@ -1,5 +1,6 @@
 ﻿using Castle.Core.Logging;
 using Lanche.Core.Application;
+using Lanche.Core.Dependency;
 using Lanche.Domain.Repository;
 using Lanche.Domain.Repository.Paging;
 using Lanche.DynamicWebApi.Application;
@@ -24,6 +25,7 @@ namespace UnitTest
         private readonly IEfRepository<Students> _studentRepository;
         private readonly IUnitOfWorkManager _uowManger;
         private readonly ILogger _logger;
+        public Lanche.Domain.Repository.Paging.IPagingRequestEntitySolover Slover { get; set; }
 
         public TestApplicationBiz(IEfRepository<Students> studentRepository, IUnitOfWorkManager uowManger,ILogger logger)
         {
@@ -34,6 +36,7 @@ namespace UnitTest
         
         public virtual PagingEntity<Students> GetInPaging(int pageIndex, int PageSize, bool sort, string orderProperty)
         {
+           
             _logger.Debug("ss");
             return _studentRepository.GetInPaging(m => m.IsDeleted == false, pageIndex, PageSize, orderProperty, sort);
 

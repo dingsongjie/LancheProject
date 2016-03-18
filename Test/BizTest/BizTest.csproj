@@ -96,6 +96,10 @@
       <Project>{2d134c24-76f5-4508-b90a-698f954d806e}</Project>
       <Name>Lanche.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Lanche.Extensions.JqueryDataTable\Lanche.Extensions.JqueryDataTable.csproj">
+      <Project>{edaffb8a-01d2-447d-94ba-3d9c2934945c}</Project>
+      <Name>Lanche.Extensions.JqueryDataTable</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EntityFrameworkTest\EntityFrameworkTest.csproj">
       <Project>{afb6983e-d4ac-4129-97b1-cc2a929f0f34}</Project>
       <Name>EntityFrameworkTest</Name>

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JqueryDataTableModule.cs" />
     <Compile Include="Paging\Request\Column.cs" />
     <Compile Include="Paging\Request\Order.cs" />
     <Compile Include="Paging\Request\PagingParsedEntity.cs" />
