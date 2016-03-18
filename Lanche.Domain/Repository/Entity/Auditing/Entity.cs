@@ -9,7 +9,7 @@ namespace Lanche.Domain.Repository.Entity.Auditing
     /// <summary>
     /// 软删除，添加，删除，更新审计信息表基类
     /// </summary>
-    public class Entity : EntityBase<Guid>, ISoftDelete, ICreationAudited<Guid>, IDeletionAudited<Guid>, IUpdationAudited<Guid>
+    public class Entity : EntityBase<string>, ISoftDelete, ICreationAudited<string>, IDeletionAudited<string>, IUpdationAudited<string>
     {
         public DateTime CreateTime
         {
@@ -17,7 +17,7 @@ namespace Lanche.Domain.Repository.Entity.Auditing
             set;
         }
 
-        public Guid CreateUesrId
+        public string CreateUesrId
         {
             get;
             set;
@@ -29,7 +29,7 @@ namespace Lanche.Domain.Repository.Entity.Auditing
             set;
         }
 
-        public Guid DeleteUesrId
+        public string DeleteUesrId
         {
             get;
             set;
@@ -47,7 +47,7 @@ namespace Lanche.Domain.Repository.Entity.Auditing
             set;
         }
 
-        public Guid UpdateUesrId
+        public string UpdateUesrId
         {
             get;
             set;
