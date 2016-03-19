@@ -45,7 +45,7 @@ namespace UnitTest
       //  [DefaultAuthorizeAttribute]
         public virtual List<Students> GetInPagingS()
         {
-
+            throw new Exception("ss");
             var v = _studentRepository.GetAll().OrderBy(m => m.Age).Where(m => m.IsDeleted == false).Skip(1).Take(1).ToList();
             return v;
         }
@@ -59,6 +59,7 @@ namespace UnitTest
         }
         public virtual int GetCount(string name)
         {
+
             return _studentRepository.Count(m => m.Name != name);
         }
         public async virtual Task<Students> Add(Students s)
@@ -107,7 +108,7 @@ namespace UnitTest
             throw new Exception("dc");
         }
         
-     
+       
         public virtual Task<Students> GetOneAsync(string name)
         {
             return _studentRepository.SingleAsync(m => m.Name == name);

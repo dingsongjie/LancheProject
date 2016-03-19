@@ -12,14 +12,14 @@ namespace Lanche.Domain.Repository.Paging
     {
         public PagingResultEntity(PagingEntity<TEntity> pagingEntity,int draw)
         {
-            this.Draw = draw;
-            this.RecordsTotal = pagingEntity.EntityTotalCount;
-            this.RecordsFiltered = pagingEntity.EntityTotalCount;
+            this.draw = draw;
+            this.recordsTotal = pagingEntity.EntityTotalCount;
+            this.recordsFiltered = pagingEntity.EntityTotalCount;
             this.Data = pagingEntity.Entities;
-
+            
         }
-        public int Draw { get;private set; }
-        public long RecordsTotal { get; private set; }
-        public int RecordsFiltered { get; private set; }
+        public int draw { get;private set; }
+        public long recordsTotal { get; private set; }
+        public int recordsFiltered { get; private set; }
     }
 }

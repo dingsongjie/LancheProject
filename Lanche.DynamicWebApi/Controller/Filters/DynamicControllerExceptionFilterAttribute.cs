@@ -15,7 +15,7 @@ namespace Lanche.DynamicWebApi.Controller.Filters
     /// <summary>
     /// Used to handle exceptions on web api controllers.
     /// </summary>
-    public class DynamicControllerExceptionFilterAttribute : ExceptionFilterAttribute, ITransientDependency
+    public class DynamicControllerExceptionFilterAttribute : ExceptionFilterAttribute,ISingleDependency
     {
         private readonly ErrorInfo _errorInfo;
         public DynamicControllerExceptionFilterAttribute(ErrorInfo errorInfo)
@@ -29,8 +29,7 @@ namespace Lanche.DynamicWebApi.Controller.Filters
         public override void OnException(HttpActionExecutedContext context)
         {
 
-            _errorInfo.Exception = context.Exception;
-          
+            _errorInfo.Exception = context.Exception;        
             context.Response = context.Request.CreateResponse(
                 HttpStatusCode.OK,
                 new AjaxResponse(_errorInfo) 
