@@ -90,12 +90,6 @@ namespace Lanche.UnitOfWork
 
         public abstract void SaveChanges();
 
-      
-
-     
-
-     
-
         public void Complete()
         {
             PreventMultipleComplete();
@@ -108,7 +102,7 @@ namespace Lanche.UnitOfWork
             catch (Exception ex)
             {
                 _exception = ex;
-                throw;
+                throw _exception;
             }
         }
 
@@ -219,7 +213,7 @@ namespace Lanche.UnitOfWork
             catch (Exception ex)
             {
                 _exception = ex;
-                throw;
+                throw _exception;
             }
         }
        

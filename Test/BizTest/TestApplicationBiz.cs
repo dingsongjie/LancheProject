@@ -25,7 +25,7 @@ namespace UnitTest
         private readonly IEfRepository<Students> _studentRepository;
         private readonly IUnitOfWorkManager _uowManger;
         private readonly ILogger _logger;
-        public Lanche.Domain.Repository.Paging.IPagingRequestEntitySolover Slover { get; set; }
+        public  IPagingRequestEntitySlover Slover { get; set; }
 
         public TestApplicationBiz(IEfRepository<Students> studentRepository, IUnitOfWorkManager uowManger,ILogger logger)
         {
@@ -42,7 +42,7 @@ namespace UnitTest
 
         }
         // localhost://api/services/test/test/GetInPagingS
-        [DefaultAuthorizeAttribute]
+      //  [DefaultAuthorizeAttribute]
         public virtual List<Students> GetInPagingS()
         {
 
@@ -61,9 +61,14 @@ namespace UnitTest
         {
             return _studentRepository.Count(m => m.Name != name);
         }
-        public virtual Students Add(Students s)
+        public async virtual Task<Students> Add(Students s)
         {
-            return _studentRepository.Insert(s);
+            s = new Students();
+            s.Name = "ss";
+            s.Age = 11;
+            s.Id = Guid.NewGuid();
+            s.LastModificationTime = new DateTime(1, 1, 1);
+            return await _studentRepository.InsertAsync(s);
         }
         public virtual void AddBulk(IEnumerable<Students> students)
         {

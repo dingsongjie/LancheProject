@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lanche.Domain.Repository.Paging
 {
-    public class DefaultPagingRequestEntitySolove : IPagingRequestEntitySolover
+    public class DefaultPagingRequestEntitySlove : IPagingRequestEntitySlover
     {
 
         public PagingParsedEntity<TEntity> Slover<TEntity>(PagingRequestEntity<TEntity> entity) where TEntity:class,new()

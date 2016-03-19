@@ -29,12 +29,12 @@ namespace Lanche.DynamicWebApi.Controller.Filters
         public override void OnException(HttpActionExecutedContext context)
         {
 
-            //_errorInfo.Exception = context.Exception;
-            //_errorInfo.UnAuthorizedRequest = context.Exception is AuthorizationException;
-            //context.Response = context.Request.CreateResponse(
-            //    HttpStatusCode.OK,
-            //    new AjaxResponse() { Error = new ErrorInfo() {  Message="权限不足", UnAuthorizedRequest=true} }
-            //    );
+            _errorInfo.Exception = context.Exception;
+          
+            context.Response = context.Request.CreateResponse(
+                HttpStatusCode.OK,
+                new AjaxResponse(_errorInfo) 
+                );
 
 
         }

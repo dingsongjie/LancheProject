@@ -15,7 +15,7 @@ namespace Lanche.Extensions.JqueryDataTable
     {
         public override void PreInitialize()
         {
-            IocManager.Register<IPagingRequestEntitySolover, DefaultPagingRequestEntitySolove>();
+            IocManager.Register<IPagingRequestEntitySlover, DefaultPagingRequestEntitySlove>();
         }
     }
 }
