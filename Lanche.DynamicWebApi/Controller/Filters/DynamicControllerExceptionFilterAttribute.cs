@@ -13,14 +13,14 @@ using Lanche.Web.Exceptions;
 namespace Lanche.DynamicWebApi.Controller.Filters
 {
     /// <summary>
-    /// Used to handle exceptions on web api controllers.
+    /// 拦截错误 返回自定义信息
     /// </summary>
     public class DynamicControllerExceptionFilterAttribute : ExceptionFilterAttribute,ISingleDependency
     {
-        private readonly ErrorInfo _errorInfo;
-        public DynamicControllerExceptionFilterAttribute(ErrorInfo errorInfo)
+      
+        public DynamicControllerExceptionFilterAttribute()
         {
-            _errorInfo = errorInfo;
+           
         }
        /// <summary>
        /// 错误拦截器
@@ -28,7 +28,7 @@ namespace Lanche.DynamicWebApi.Controller.Filters
        /// <param name="context">当前 action 上下文</param>
         public override void OnException(HttpActionExecutedContext context)
         {
-
+            ErrorInfo _errorInfo = new ErrorInfo();
             _errorInfo.Exception = context.Exception;        
             context.Response = context.Request.CreateResponse(
                 HttpStatusCode.OK,

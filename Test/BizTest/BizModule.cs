@@ -28,7 +28,7 @@ namespace BizTest
         {
             DynamicApiControllerBuilder.ForAll<ApplicationBizBase>(Assembly.GetExecutingAssembly(), "test").Build();
           
-            
+           
             
         }
     }

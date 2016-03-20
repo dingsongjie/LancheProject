@@ -7,7 +7,7 @@ namespace UnitTest
     
     using Lanche.Entityframework.UnitOfWork;
 
-    public  class TestDbContext : DbContextBase
+    public  class TestDbContext : DbContext
     {
         public TestDbContext()
             : base("name=TestDbContext")
