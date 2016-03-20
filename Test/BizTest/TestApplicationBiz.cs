@@ -45,9 +45,10 @@ namespace UnitTest
       //  [DefaultAuthorizeAttribute]
         public virtual List<Students> GetInPagingS()
         {
-            throw new Exception("ss");
-            var v = _studentRepository.GetAll().OrderBy(m => m.Age).Where(m => m.IsDeleted == false).Skip(1).Take(1).ToList();
-            return v;
+            //throw new Exception("ss");
+            //var v = _studentRepository.GetAll().OrderBy(m => m.Age).Where(m => m.IsDeleted == false).Skip(1).Take(1).ToList();
+            //return v;
+            return null;
         }
         public virtual Students GetOne(string name)
         {

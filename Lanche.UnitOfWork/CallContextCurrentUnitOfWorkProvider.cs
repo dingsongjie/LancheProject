@@ -71,21 +71,9 @@ namespace Lanche.UnitOfWork
             var unitOfWorkKey = CallContext.LogicalGetData(ContextKey) as string;
             if (unitOfWorkKey != null)
             {
-                IUnitOfWork outer;
-                if (UnitOfWorkDictionary.TryGetValue(unitOfWorkKey, out outer))
-                {
-                    if (outer == value)
-                    {
-                        throw new Exception("已经有了该工作单元");
-                       
-                    }
-
-                    value.Outer = outer;
-                }
-                else
-                {
-                   
-                }
+               
+                throw new Exception("已经有了该工作单元,不能重复设置，严重错误！！！");
+               
             }
 
             unitOfWorkKey = value.Id;
@@ -114,25 +102,10 @@ namespace Lanche.UnitOfWork
             }
 
             UnitOfWorkDictionary.TryRemove(unitOfWorkKey, out unitOfWork);
-            if (unitOfWork.Outer == null)
-            {
-                CallContext.FreeNamedDataSlot(ContextKey);
-                return;
-            }
-
+           
+             CallContext.FreeNamedDataSlot(ContextKey);
+             return;
             
-
-            var outerUnitOfWorkKey = unitOfWork.Outer.Id;
-            if (!UnitOfWorkDictionary.TryGetValue(outerUnitOfWorkKey, out unitOfWork))
-            {
-                
-                
-                CallContext.FreeNamedDataSlot(ContextKey);
-                throw new Exception("工作单元不存在");
-                
-            }
-
-            CallContext.LogicalSetData(ContextKey, outerUnitOfWorkKey);
         }
 
         /// <summary>

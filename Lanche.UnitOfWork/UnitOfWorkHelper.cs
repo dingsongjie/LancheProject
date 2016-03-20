@@ -20,7 +20,7 @@ namespace Lanche.UnitOfWork
        /// <returns></returns>
         public static bool IsConventionalUowClass(Type type)
         {
-          //  return (typeof(IRepository).IsAssignableFrom(type) && !typeof(IOutOfUnitOfWork).IsAssignableFrom(type)) || typeof(IApplicationBiz).IsAssignableFrom(type);
+          
             return typeof(IApplicationBiz).IsAssignableFrom(type);
         }
 

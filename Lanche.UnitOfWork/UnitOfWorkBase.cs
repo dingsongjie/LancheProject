@@ -16,7 +16,7 @@ namespace Lanche.UnitOfWork
     {
         public string Id { get; private set; }
 
-        public IUnitOfWork Outer { get; set; }
+     
 
       
         public event EventHandler Completed;

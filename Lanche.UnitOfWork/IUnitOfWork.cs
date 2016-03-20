@@ -14,11 +14,7 @@ namespace Lanche.UnitOfWork
         /// </summary>
         string Id { get; }
 
-        /// <summary>
-        /// 外部 unit of work 的引用
-        /// </summary>
-        IUnitOfWork Outer { get; set; }
-
+       
         /// <summary>
         /// 工作单元开始执行
         /// </summary>

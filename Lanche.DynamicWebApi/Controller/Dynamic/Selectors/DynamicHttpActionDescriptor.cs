@@ -49,8 +49,9 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic.Selectors
         public override System.Threading.Tasks.Task<object> ExecuteAsync(HttpControllerContext controllerContext, System.Collections.Generic.IDictionary<string, object> arguments, System.Threading.CancellationToken cancellationToken)
         {
 
-            dynamic Generic = controllerContext.Controller;
-            var biz = Generic.Biz;
+            dynamic generic = controllerContext.Controller;
+            
+            var biz = generic.Biz;
             controllerContext.Controller = controllerContext.Controller = biz;
             return base
                 .ExecuteAsync(controllerContext, arguments, cancellationToken)

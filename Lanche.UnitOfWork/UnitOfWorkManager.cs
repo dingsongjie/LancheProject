@@ -45,11 +45,6 @@ namespace Lanche.UnitOfWork
         {
             options.FillDefaultsForNonProvidedOptions(_defaultOptions);
 
-            if (options.Scope == TransactionScopeOption.Required && _currentUnitOfWorkProvider.Current != null)
-            {
-                throw new Exception("有一个工作单元未被释放，可能存在内存泄露？");
-            }
-
             var uow = _iocManager.Resolve<IUnitOfWork>();
 
             uow.Completed += (sender, args) =>
