@@ -15,7 +15,7 @@ namespace BizTest
     public class RabbitMqTestBiz : ApplicationBizBase
     {
         private readonly IMessageQueryManager _manager;
-        private readonly IRabbitMqConfiguration _con;
+       
         public RabbitMqTestBiz(IMessageQueryManager manager)
         {
             this._manager = manager;
