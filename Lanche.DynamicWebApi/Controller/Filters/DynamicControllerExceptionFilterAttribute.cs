@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web.Http.Filters;
 using System.Net.Http;
 using Lanche.Web.Exceptions;
+using System.Net.Http.Formatting;
 
 namespace Lanche.DynamicWebApi.Controller.Filters
 {
@@ -18,10 +19,7 @@ namespace Lanche.DynamicWebApi.Controller.Filters
     public class DynamicControllerExceptionFilterAttribute : ExceptionFilterAttribute,ISingleDependency
     {
       
-        public DynamicControllerExceptionFilterAttribute()
-        {
-           
-        }
+     
        /// <summary>
        /// 错误拦截器
        /// </summary>
@@ -30,11 +28,13 @@ namespace Lanche.DynamicWebApi.Controller.Filters
         {
             ErrorInfo _errorInfo = new ErrorInfo();
             _errorInfo.Exception = context.Exception;        
-            context.Response = context.Request.CreateResponse(
-                HttpStatusCode.OK,
-                new AjaxResponse(_errorInfo) 
-                );
-
+            //context.Response = context.Request.CreateResponse(
+            //    HttpStatusCode.OK,
+            //    new AjaxResponse(_errorInfo) 
+            //    );
+            /// 在 拦截 ajax 错误时 上面写法 返回 500
+            context.Response = new HttpResponseMessage(HttpStatusCode.OK);
+            context.Response.Content = new ObjectContent<AjaxResponse>(new AjaxResponse(_errorInfo), new JsonMediaTypeFormatter());
 
         }
     }

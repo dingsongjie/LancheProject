@@ -49,7 +49,7 @@ namespace Lanche.Entityframework
                  throw new Exception("No class found derived from DbContext.");
 
              }
-             //dbContextTypes.ToList().ForEach(m => IocManager.Register(m));
+             dbContextTypes.ToList().ForEach(m => IocManager.Register(m,DependencyLifeStyle.Multiple));
              foreach (var dbContextType in dbContextTypes)
              {
                  EntityFrameworkGenericRepositoryRegistrar.RegisterForDbContext(dbContextType, manager);

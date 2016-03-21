@@ -15,7 +15,7 @@ using Lanche.Core;
 using Lanche.Entityframework;
 using Lanche.Core.Reflection;
 
-namespace UnitTest
+namespace UnitTest.Test
 {
     [TestClass]
     public class ApplicationBizTest

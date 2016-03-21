@@ -11,7 +11,7 @@ namespace UnitTest
         public Guid Id { get; set; }
 
         public string Name { get; set; }
-
+        [Range(1,20)]
         public int Age { get; set; }
 
         public bool IsDeleted { get; set; }

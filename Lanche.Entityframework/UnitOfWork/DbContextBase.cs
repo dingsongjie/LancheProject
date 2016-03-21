@@ -11,7 +11,7 @@ namespace Lanche.Entityframework.UnitOfWork
     /// <summary>
     /// 所有自定义DbContext的基类
     /// </summary>
-    public class DbContextBase : DbContext, IInitializable, ITransientDependency
+    public class DbContextBase : DbContext, IInitializable
     {
         public void Initialize()
         {

@@ -25,24 +25,24 @@ namespace UnitTest
         private readonly IEfRepository<Students> _studentRepository;
         private readonly IUnitOfWorkManager _uowManger;
         private readonly ILogger _logger;
-        public  IPagingRequestEntitySlover Slover { get; set; }
+        public IPagingRequestEntitySlover Slover { get; set; }
 
-        public TestApplicationBiz(IEfRepository<Students> studentRepository, IUnitOfWorkManager uowManger,ILogger logger)
+        public TestApplicationBiz(IEfRepository<Students> studentRepository, IUnitOfWorkManager uowManger, ILogger logger)
         {
             _studentRepository = studentRepository;
             _uowManger = uowManger;
             _logger = logger;
         }
-        
+
         public virtual PagingEntity<Students> GetInPaging(int pageIndex, int PageSize, bool sort, string orderProperty)
         {
-           
+
             _logger.Debug("ss");
             return _studentRepository.GetInPaging(m => m.IsDeleted == false, pageIndex, PageSize, orderProperty, sort);
 
         }
         // localhost://api/services/test/test/GetInPagingS
-      //  [DefaultAuthorizeAttribute]
+        //  [DefaultAuthorizeAttribute]
         public virtual List<Students> GetInPagingS()
         {
             //throw new Exception("ss");
@@ -65,11 +65,12 @@ namespace UnitTest
         }
         public async virtual Task<Students> Add(Students s)
         {
-            s = new Students();
-            s.Name = "ss";
-            s.Age = 11;
-            s.Id = Guid.NewGuid();
-            s.LastModificationTime = new DateTime(1, 1, 1);
+          
+            //s = new Students();
+            //s.Name = "ss";
+            //s.Age = 11;
+            //s.Id = Guid.NewGuid();
+            //s.CreationTime = new DateTime(2014, 1, 1);
             return await _studentRepository.InsertAsync(s);
         }
         public virtual void AddBulk(IEnumerable<Students> students)
@@ -108,8 +109,8 @@ namespace UnitTest
 
             throw new Exception("dc");
         }
-        
-       
+
+
         public virtual Task<Students> GetOneAsync(string name)
         {
             return _studentRepository.SingleAsync(m => m.Name == name);

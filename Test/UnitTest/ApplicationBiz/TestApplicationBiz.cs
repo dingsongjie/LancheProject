@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitTest
+namespace UnitTest.Test
 {
     public class TestApplicationBiz : IApplicationBiz
     {
