@@ -1,7 +1,9 @@
 ﻿using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Lanche.Domain.Repository;
+using Lanche.Domain.Repository.Paging;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
@@ -16,29 +18,12 @@ namespace Lanche.Entityframework.UnitOfWork.Repository
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     public interface IEfRepository<TEntity> : IRepository<TEntity> where TEntity:class,new()
-    {
+    {   
         /// <summary>
-        /// 提供 sql 语句查询能力
+        /// 得到Database对向 
         /// </summary>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="sql"></param>
-        /// <param name="parameters"></param>
         /// <returns></returns>
-        DbRawSqlQuery<TResult> SqlQuery<TResult>(string sql, params object[] parameters);
-        /// <summary>
-        /// 提供SQL语句 sqlCommand
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        int ExecuteSqlCommand(string sql, params object[] parameters);
-        /// <summary>
-        /// 提供SQL语句 sqlCommand 异步
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        Task<int> ExecuteSqlCommandAsync(string sql, params object[] parameters);
+        Database GetDatebase();
         /// <summary>
         /// 批量删除
         /// </summary>
@@ -79,5 +64,70 @@ namespace Lanche.Entityframework.UnitOfWork.Repository
         /// <param name="bulkSize"></param>
 
         void BulkInsert(IEnumerable<TEntity> entities, int? bulkSize=null);
+        /// <summary>
+        /// 返回所有实体List不再内存中缓存，不做状态跟踪
+        /// </summary>
+        /// <returns>实体List</returns>
+        List<TEntity> GetAllListNoTracking();
+        /// <summary>
+        /// 返回所有实体List不再内存中缓存，不做状态跟踪 异步方法
+        /// </summary>
+        /// <returns>实体List</returns>
+        Task<List<TEntity>> GetAllListNoTrackingAsync();
+        /// <summary>
+        /// 根据 lambda 返回 实体List 不做状态跟踪
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        /// <returns>实体 list</returns>
+        List<TEntity> GetAllListNoTracking(Expression<Func<TEntity, bool>> predicate);
+        /// <summary>
+        /// 根据 lambda 返回 实体List 不做状态跟踪 异步
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        /// <returns>实体 list</returns>
+        Task<List<TEntity>> GetAllListNoTrackingAsync(Expression<Func<TEntity, bool>> predicate);
+
+        /// <summary>
+        /// 返回单个，找到多个 直接报错 不做状态跟踪
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        /// <returns></returns>
+        TEntity SingleNoTracking(Expression<Func<TEntity, bool>> predicate);
+        /// <summary>
+        /// 返回单个，找到多个 直接报错 不做状态跟踪 async
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        /// <returns></returns>
+        Task<TEntity> SingleNoTrackingAsync(Expression<Func<TEntity, bool>> predicate);
+        /// <summary>
+        /// 得到第一个 或者 null  不做状态跟踪
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        TEntity FirstOrDefaultNoTracking(Expression<Func<TEntity, bool>> predicate);
+        /// <summary>
+        /// 得到第一个 或者 null   不做状态跟踪 async
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        Task<TEntity> FirstOrDefaultNoTrackingAsync(Expression<Func<TEntity, bool>> predicate);
+        /// <summary>
+        /// 分页 不做状态跟踪
+        /// </summary>
+        /// <param name="query">where</param>
+        /// <param name="pageIndex">当前页</param>
+        /// <param name="pageSize">页size</param>
+        /// <param name="orderPropertyName">order Property</param>
+        /// <param name="sort"> 正或逆 </param>
+        /// <returns>包含所有分页信息的数据传递对象</returns>
+        PagingEntity<TEntity> GetInPagingNoTracking(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, bool sort = true);
+        /// <summary>
+        /// 分页 不做状态跟踪 async
+        /// </summary>
+        /// <param name="query">where</param>
+        /// <param name="pageIndex">当前页</param>
+        /// <param name="pageSize">页size</param>
+        /// <param name="orderPropertyName">order Property</param>
+        /// <param name="sort"> 正或逆 </param>
+        /// <returns>包含所有分页信息的数据传递对象</returns>
+        Task<PagingEntity<TEntity>> GetInPagingNoTrackingAsync(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, bool sort = true);
     }
 }

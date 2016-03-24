@@ -73,7 +73,7 @@ namespace UnitTest.Test
         }
         public virtual int SqlQuery(string sql)
         {
-           return _studentRepository.SqlQuery<int>(sql).ToList()[0];
+           return _studentRepository.GetDatebase().SqlQuery<int>(sql).ToList()[0];
         }
      
 		  [UnitOfWork(isTransactional:true)]
