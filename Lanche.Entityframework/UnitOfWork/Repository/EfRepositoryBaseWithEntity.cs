@@ -341,5 +341,143 @@ namespace Lanche.Entityframework.UnitOfWork.Repository
             };
             return result;
         }
+
+
+
+
+
+        public List<TModel> GetAllListNoTracking<TModel>(Expression<Func<TEntity, TModel>> select) where TModel : class
+        {
+            return GetAll().AsNoTracking().Select(select).ToList();
+        }
+
+        public Task<List<TModel>> GetAllListNoTrackingAsync<TModel>(Expression<Func<TEntity, TModel>> select) where TModel : class
+        {
+            return GetAll().AsNoTracking().Select(select).ToListAsync();
+        }
+
+        public List<TModel> GetAllListNoTracking<TModel>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TModel>> select) where TModel:class
+        {
+            return GetAll().Where(predicate).Select(select).AsNoTracking().ToList();
+        }
+
+        public Task<List<TModel>> GetAllListNoTrackingAsync<TModel>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TModel>> select) where TModel : class
+        {
+            return GetAll().Where(predicate).Select(select).AsNoTracking().ToListAsync();
+        }
+
+        public TModel SingleNoTracking<TModel>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TModel>> select) where TModel : class
+        {
+            return GetAll().Where(predicate).Select(select).AsNoTracking().Single();
+        }
+
+        public Task<TModel> SingleNoTrackingAsync<TModel>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TModel>> select) where TModel : class
+        {
+            return GetAll().Where(predicate).Select(select).AsNoTracking().SingleAsync();
+        }
+
+        public TModel FirstOrDefaultNoTracking<TModel>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TModel>> select) where TModel : class
+        {
+            return GetAll().Where(predicate).Select(select).AsNoTracking().FirstOrDefault();
+        }
+
+        public Task<TModel> FirstOrDefaultNoTrackingAsync<TModel>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TModel>> select) where TModel : class
+        {
+            return GetAll().Where(predicate).Select(select).AsNoTracking().FirstOrDefaultAsync();
+        }
+
+        public PagingEntity<TModel> GetInPagingNoTracking<TModel>(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, Expression<Func<TEntity, TModel>> select, bool sort = true) where TModel : class,new()
+        {
+            List<TModel> entities;
+            var count = this.Count(query);
+            var skipNumber = (pageIndex - 1) * pageSize;
+            var maxPage = (int)Math.Ceiling((double)count / pageSize);
+            PropertyInfo orderPropertyInfo = typeof(TEntity).GetProperty(orderPropertyName);
+            Type orderType = orderPropertyInfo.PropertyType;
+
+            if (string.IsNullOrEmpty(orderPropertyName))
+            {
+                if (sort)
+                {
+                    entities = this.GetAll().Where(query).Select(select).Skip(skipNumber).Take(pageSize).AsNoTracking().ToList();
+                }
+                else
+                {
+                    entities = this.GetAll().Where(query).Select(select).Skip(skipNumber).Take(pageSize).AsNoTracking().ToList();
+                }
+            }
+            else
+            {
+                var parameter = Expression.Parameter(typeof(TEntity), "m");
+                var mExpr = Expression.Property(parameter, orderPropertyName);
+                var orderByExp = Expression.Lambda(mExpr, parameter);
+
+                var queryExpression = this.GetAll().Where(query);
+
+                string methodName = sort ? "OrderBy" : "OrderByDescending";
+                MethodCallExpression resultExp = Expression.Call(typeof(Queryable), methodName, new Type[] { typeof(TEntity), orderType }, queryExpression.Expression, Expression.Quote(orderByExp));
+                queryExpression = queryExpression.Provider.CreateQuery<TEntity>(resultExp);
+
+                entities = queryExpression.Select(select).Skip(skipNumber).Take(pageSize).AsNoTracking().ToList();
+
+            }
+
+            var result = new PagingEntity<TModel>()
+            {
+                Entities = entities,
+                MaxPage = maxPage,
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                EntityTotalCount = count
+            };
+            return result;
+        }
+
+        public async Task<PagingEntity<TModel>> GetInPagingNoTrackingAsync<TModel>(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, Expression<Func<TEntity, TModel>> select, bool sort = true) where TModel : class,new()
+        {
+            List<TModel> entities;
+            var count = await this.CountAsync(query);
+            var skipNumber = (pageIndex - 1) * pageSize;
+            var maxPage = (int)Math.Ceiling((double)count / pageSize);
+            PropertyInfo orderPropertyInfo = typeof(TEntity).GetProperty(orderPropertyName);
+            Type orderType = orderPropertyInfo.PropertyType;
+
+            if (string.IsNullOrEmpty(orderPropertyName))
+            {
+                if (sort)
+                {
+                    entities = await this.GetAll().Where(query).Select(select).Skip(skipNumber).Take(pageSize).AsNoTracking().ToListAsync();
+                }
+                else
+                {
+                    entities = await this.GetAll().Where(query).Select(select).Skip(skipNumber).Take(pageSize).AsNoTracking().ToListAsync();
+                }
+            }
+            else
+            {
+                var parameter = Expression.Parameter(typeof(TEntity), "m");
+                var mExpr = Expression.Property(parameter, orderPropertyName);
+                var orderByExp = Expression.Lambda(mExpr, parameter);
+
+                var queryExpression = this.GetAll().Where(query);
+
+                string methodName = sort ? "OrderBy" : "OrderByDescending";
+                MethodCallExpression resultExp = Expression.Call(typeof(Queryable), methodName, new Type[] { typeof(TEntity), orderType }, queryExpression.Expression, Expression.Quote(orderByExp));
+                queryExpression = queryExpression.Provider.CreateQuery<TEntity>(resultExp);
+
+                entities = await queryExpression.Select(select).Skip(skipNumber).Take(pageSize).AsNoTracking().ToListAsync();
+
+            }
+
+            var result = new PagingEntity<TModel>()
+            {
+                Entities = entities,
+                MaxPage = maxPage,
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                EntityTotalCount = count
+            };
+            return result;
+        }
     }
 }

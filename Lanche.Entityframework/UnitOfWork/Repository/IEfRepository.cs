@@ -20,7 +20,7 @@ namespace Lanche.Entityframework.UnitOfWork.Repository
     public interface IEfRepository<TEntity> : IRepository<TEntity> where TEntity:class,new()
     {   
         /// <summary>
-        /// 得到Database对向 
+        /// 得到Database对向 以获得ado.net 访问数据库的部分能力
         /// </summary>
         /// <returns></returns>
         Database GetDatebase();
@@ -70,10 +70,20 @@ namespace Lanche.Entityframework.UnitOfWork.Repository
         /// <returns>实体List</returns>
         List<TEntity> GetAllListNoTracking();
         /// <summary>
+        /// 返回所有实体List不再内存中缓存，不做状态跟踪，并根据select查询指定字段
+        /// </summary>
+        /// <returns>实体List</returns>
+        List<TModel> GetAllListNoTracking<TModel>(Expression<Func<TEntity, TModel>> select) where TModel : class;
+        /// <summary>
         /// 返回所有实体List不再内存中缓存，不做状态跟踪 异步方法
         /// </summary>
         /// <returns>实体List</returns>
         Task<List<TEntity>> GetAllListNoTrackingAsync();
+        /// <summary>
+        /// 返回所有实体List不再内存中缓存，不做状态跟踪 ，并根据select查询指定字段 异步方法 
+        /// </summary>
+        /// <returns>实体List</returns>
+        Task<List<TModel>> GetAllListNoTrackingAsync<TModel>(Expression<Func<TEntity, TModel>> select)where TModel:class;
         /// <summary>
         /// 根据 lambda 返回 实体List 不做状态跟踪
         /// </summary>
@@ -81,11 +91,23 @@ namespace Lanche.Entityframework.UnitOfWork.Repository
         /// <returns>实体 list</returns>
         List<TEntity> GetAllListNoTracking(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
+        /// 根据 lambda 返回 实体List 不做状态跟踪，并根据select查询指定字段
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        /// <returns>实体 list</returns>
+        List<TModel> GetAllListNoTracking<TModel>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TModel>> select) where TModel : class;
+        /// <summary>
         /// 根据 lambda 返回 实体List 不做状态跟踪 异步
         /// </summary>
         /// <param name="predicate">where 条件</param>
         /// <returns>实体 list</returns>
         Task<List<TEntity>> GetAllListNoTrackingAsync(Expression<Func<TEntity, bool>> predicate);
+        /// <summary>
+        /// 根据 lambda 返回 实体List 不做状态跟踪，并根据select查询指定字段 异步
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        /// <returns>实体 list</returns>
+        Task<List<TModel>> GetAllListNoTrackingAsync<TModel>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TModel>> select) where TModel : class;
 
         /// <summary>
         /// 返回单个，找到多个 直接报错 不做状态跟踪
@@ -94,21 +116,43 @@ namespace Lanche.Entityframework.UnitOfWork.Repository
         /// <returns></returns>
         TEntity SingleNoTracking(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
+        /// 返回单个，找到多个 直接报错 不做状态跟踪，并根据select查询指定字段
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        /// <returns></returns>
+        TModel SingleNoTracking<TModel>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TModel>> select) where TModel : class;
+        /// <summary>
         /// 返回单个，找到多个 直接报错 不做状态跟踪 async
         /// </summary>
         /// <param name="predicate">where 条件</param>
         /// <returns></returns>
         Task<TEntity> SingleNoTrackingAsync(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
+        /// 返回单个，找到多个 直接报错 不做状态跟踪，并根据select查询指定字段 async
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        /// <returns></returns>
+        Task<TModel> SingleNoTrackingAsync<TModel>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TModel>> select) where TModel : class;
+        /// <summary>
         /// 得到第一个 或者 null  不做状态跟踪
         /// </summary>
         /// <param name="predicate">where 条件</param>
         TEntity FirstOrDefaultNoTracking(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
+        /// 得到第一个 或者 null  不做状态跟踪，并根据select查询指定字段
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        TModel FirstOrDefaultNoTracking<TModel>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TModel>> select) where TModel : class;
+        /// <summary>
         /// 得到第一个 或者 null   不做状态跟踪 async
         /// </summary>
         /// <param name="predicate">where 条件</param>
         Task<TEntity> FirstOrDefaultNoTrackingAsync(Expression<Func<TEntity, bool>> predicate);
+        /// <summary>
+        /// 得到第一个 或者 null   不做状态跟踪，并根据select查询指定字段 async
+        /// </summary>
+        /// <param name="predicate">where 条件</param>
+        Task<TModel> FirstOrDefaultNoTrackingAsync<TModel>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TModel>> select) where TModel : class;
         /// <summary>
         /// 分页 不做状态跟踪
         /// </summary>
@@ -120,6 +164,16 @@ namespace Lanche.Entityframework.UnitOfWork.Repository
         /// <returns>包含所有分页信息的数据传递对象</returns>
         PagingEntity<TEntity> GetInPagingNoTracking(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, bool sort = true);
         /// <summary>
+        /// 分页 不做状态跟踪，并根据select查询指定字段
+        /// </summary>
+        /// <param name="query">where</param>
+        /// <param name="pageIndex">当前页</param>
+        /// <param name="pageSize">页size</param>
+        /// <param name="orderPropertyName">order Property</param>
+        /// <param name="sort"> 正或逆 </param>
+        /// <returns>包含所有分页信息的数据传递对象</returns>
+        PagingEntity<TModel> GetInPagingNoTracking<TModel>(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, Expression<Func<TEntity, TModel>> select, bool sort = true) where TModel : class,new();
+        /// <summary>
         /// 分页 不做状态跟踪 async
         /// </summary>
         /// <param name="query">where</param>
@@ -129,5 +183,15 @@ namespace Lanche.Entityframework.UnitOfWork.Repository
         /// <param name="sort"> 正或逆 </param>
         /// <returns>包含所有分页信息的数据传递对象</returns>
         Task<PagingEntity<TEntity>> GetInPagingNoTrackingAsync(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, bool sort = true);
+        /// <summary>
+        /// 分页 不做状态跟踪 ，并根据select查询指定字段 async
+        /// </summary>
+        /// <param name="query">where</param>
+        /// <param name="pageIndex">当前页</param>
+        /// <param name="pageSize">页size</param>
+        /// <param name="orderPropertyName">order Property</param>
+        /// <param name="sort"> 正或逆 </param>
+        /// <returns>包含所有分页信息的数据传递对象</returns>
+        Task<PagingEntity<TModel>> GetInPagingNoTrackingAsync<TModel>(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, Expression<Func<TEntity, TModel>> select, bool sort = true) where TModel : class,new();
     }
 }

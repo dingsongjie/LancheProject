@@ -53,6 +53,7 @@
     <Compile Include="Repository\IRepositoryWithEntity.cs" />
     <Compile Include="Repository\Paging\PagingDTO.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
+    <Compile Include="Services\IDomainService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lanche.Core\Lanche.Core.csproj">
