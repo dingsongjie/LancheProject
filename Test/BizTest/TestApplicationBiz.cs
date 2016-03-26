@@ -69,7 +69,7 @@ namespace UnitTest
             s.Name = "ss";
             s.Age = 11;
             s.Id = Guid.NewGuid();
-            s.LastModificationTime = new DateTime(1, 1, 1);
+            s.CreationTime = new DateTime(2016, 1, 1);
             return await _studentRepository.InsertAsync(s);
         }
         public virtual void AddBulk(IEnumerable<Students> students)
