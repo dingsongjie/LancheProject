@@ -54,15 +54,15 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Project\SimpleDemo\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <Choose>
@@ -86,6 +86,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Db\TestDbContext.cs" />
     <Compile Include="Repository\TestRepositoryBase.cs" />
+    <Compile Include="SomeMagic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -100,6 +101,10 @@
       <Project>{2d134c24-76f5-4508-b90a-698f954d806e}</Project>
       <Name>Lanche.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Lanche.DynamicWebApi\Lanche.DynamicWebApi.csproj">
+      <Project>{340217fb-497c-43f1-baf1-c9566b5c8e2e}</Project>
+      <Name>Lanche.DynamicWebApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Lanche.Entityframework\Lanche.Entityframework.csproj">
       <Project>{c4eb9e39-a078-4c55-9e80-5d78a62a64ba}</Project>
       <Name>Lanche.Entityframework</Name>
@@ -107,6 +112,10 @@
     <ProjectReference Include="..\..\Lanche.UnitOfWork\Lanche.UnitOfWork.csproj">
       <Project>{a462baee-bd27-4bb4-80a9-20a3ee484449}</Project>
       <Name>Lanche.UnitOfWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BizTest\BizTest.csproj">
+      <Project>{21156d02-630e-400d-8ad6-d7b09648b8c1}</Project>
+      <Name>BizTest</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

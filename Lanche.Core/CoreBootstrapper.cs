@@ -44,8 +44,6 @@ namespace Lanche.Core
         {
 
         }
-
-
         public void Dispose()
         {
 

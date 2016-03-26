@@ -12,7 +12,7 @@ namespace Lanche.UnitOfWork
      public interface IUnitOfWorkDefaultOptions
     {
         /// <summary>
-        /// 事物选项
+        /// 事务选项
         /// </summary>
         TransactionScopeOption Scope { get; set; }
 
@@ -22,7 +22,7 @@ namespace Lanche.UnitOfWork
         bool IsTransactional { get; set; }
 
         /// <summary>
-        /// 事物 timeout时间
+        /// 事务 timeout时间
         /// </summary>
         TimeSpan? Timeout { get; set; }
 
@@ -30,9 +30,6 @@ namespace Lanche.UnitOfWork
         /// 事务隔离界别
         /// </summary>
         IsolationLevel? IsolationLevel { get; set; }
-
-    
-
 
     }
 }

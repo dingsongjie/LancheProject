@@ -50,20 +50,13 @@ namespace Lanche.Domain.Repository
         /// <returns>实体 list</returns>
         Task<List<TEntity>> GetAllListAsync(Expression<Func<TEntity, bool>> predicate);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="queryMethod"></param>
-        /// <returns></returns>
-        T Query<T>(Func<IQueryable<TEntity>, T> queryMethod);
+      
 
-
-      /// <summary>
-      /// 返回单个，找到多个 直接报错
-      /// </summary>
-      /// <param name="predicate">where 条件</param>
-      /// <returns></returns>
+          /// <summary>
+          /// 返回单个，找到多个 直接报错
+          /// </summary>
+          /// <param name="predicate">where 条件</param>
+          /// <returns></returns>
         TEntity Single(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
         /// 返回单个，找到多个 直接报错

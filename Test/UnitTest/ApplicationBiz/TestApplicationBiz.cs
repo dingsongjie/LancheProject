@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitTest
+namespace UnitTest.Test
 {
     public class TestApplicationBiz : IApplicationBiz
     {
@@ -73,7 +73,7 @@ namespace UnitTest
         }
         public virtual int SqlQuery(string sql)
         {
-           return _studentRepository.SqlQuery<int>(sql).ToList()[0];
+           return _studentRepository.GetDatebase().SqlQuery<int>(sql).ToList()[0];
         }
      
 		  [UnitOfWork(isTransactional:true)]
