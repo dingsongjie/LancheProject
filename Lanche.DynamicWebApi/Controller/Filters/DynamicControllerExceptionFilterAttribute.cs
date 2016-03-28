@@ -33,8 +33,19 @@ namespace Lanche.DynamicWebApi.Controller.Filters
             //    new AjaxResponse(_errorInfo) 
             //    );
             /// 在 拦截 ajax 错误时 上面写法 返回 500
-            context.Response = new HttpResponseMessage(HttpStatusCode.OK);
-            context.Response.Content = new ObjectContent<AjaxResponse>(new AjaxResponse(_errorInfo), new JsonMediaTypeFormatter());
+           if(_errorInfo.Exception.InnerException!=null)      
+            {
+                //提示友好信息
+                _errorInfo.Message = _errorInfo.Exception.InnerException.Message;
+                context.Response = new HttpResponseMessage(HttpStatusCode.OK);
+                context.Response.Content = new ObjectContent<AjaxResponse>(new AjaxResponse(_errorInfo), new JsonMediaTypeFormatter());
+            }
+            else
+            {
+                context.Response = new HttpResponseMessage(HttpStatusCode.OK);
+                context.Response.Content = new ObjectContent<AjaxResponse>(new AjaxResponse(_errorInfo), new JsonMediaTypeFormatter());
+            }
+           
 
         }
     }

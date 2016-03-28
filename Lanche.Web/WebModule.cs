@@ -15,20 +15,6 @@ namespace Lanche.Web
     [DependsOn(typeof(CoreModule))]
     public class WebModule : Module
     {
-        /// <inheritdoc/>
-        public override void PreInitialize()
-        {
-           
 
-           
-
-         
-        }
-
-        /// <inheritdoc/>
-        public override void Initialize()
-        {
-           
-        }
     }
 }

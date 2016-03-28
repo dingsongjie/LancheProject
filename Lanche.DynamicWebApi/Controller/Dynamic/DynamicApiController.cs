@@ -17,10 +17,10 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic
         /// <summary>
         /// 内部 biz
         /// </summary>
-        public T ApplicationServices { get; set; }
+        public T ApplicationService { get; set; }
         public DynamicApiController()
         {
-            ApplicationServices = IocManager.Instance.Resolve<T>();
+            ApplicationService = IocManager.Instance.Resolve<T>();
         }
 
     }

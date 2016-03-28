@@ -51,8 +51,8 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic.Selectors
 
             dynamic generic = controllerContext.Controller;
             
-            var biz = generic.Biz;
-            controllerContext.Controller = controllerContext.Controller = biz;
+            var applicationService = generic.ApplicationService;
+            controllerContext.Controller = controllerContext.Controller = applicationService;
             return base
                 .ExecuteAsync(controllerContext, arguments, cancellationToken)
                 .ContinueWith(task =>

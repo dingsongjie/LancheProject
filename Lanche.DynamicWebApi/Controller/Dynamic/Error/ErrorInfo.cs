@@ -9,7 +9,7 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic
     public class ErrorInfo : ITransientDependency
     {
         /// <summary>
-        /// 此处自定义信息
+        /// 此处自定义信息（友好信息）
         /// </summary>
         public string Message { get; set; }
         /// <summary>

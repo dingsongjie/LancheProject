@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace Lanche.Web.Exceptions
 {
-    public class AuthorizationException : Exception
+    public class FriendlyException : Exception
     {
+        
+        public FriendlyException(string friendlyMessage):base(friendlyMessage)
+        {
+           
+        }
+        public FriendlyException(string friendlyMessage,Exception exception):base(friendlyMessage,exception)
+        {
+  
+             
+        }
     }
 }

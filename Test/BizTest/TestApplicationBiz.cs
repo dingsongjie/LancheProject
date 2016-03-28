@@ -7,6 +7,7 @@ using Lanche.DynamicWebApi.Application;
 using Lanche.DynamicWebApi.Controller.Filters;
 using Lanche.Entityframework.UnitOfWork.Repository;
 using Lanche.UnitOfWork;
+using Lanche.Web.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,7 @@ namespace UnitTest
             //throw new Exception("ss");
             //var v = _studentRepository.GetAll().OrderBy(m => m.Age).Where(m => m.IsDeleted == false).Skip(1).Take(1).ToList();
             //return v;
+           
             return null;
         }
         public virtual Students GetOne(string name)
@@ -69,7 +71,7 @@ namespace UnitTest
             s.Name = "ss";
             s.Age = 11;
             s.Id = Guid.NewGuid();
-            s.CreationTime = new DateTime(2016, 1, 1);
+            s.CreationTime = new DateTime(0, 1, 1);
             return await _studentRepository.InsertAsync(s);
         }
         public virtual void AddBulk(IEnumerable<Students> students)
