@@ -30,11 +30,11 @@
     </div>
 </div>
 @section scripts{
-    @*<script>
+    <script>
         $(function () {
-            $.post("/api/services/test/test/GetInPaging", { "pageIndex": "1", "PageSize": "1", "sort": "true" }, function () {
+            $.post("/api/services/test/test/add", { "isdeleted":false, "CreationTime": "2014-12-1", "Id": "11111111-1111-1111-1111-111111111111", "name": "ss", "age": 30 }, function (data) {
                 alert(1);
             })
         })
-    </script>*@
+    </script>
 }

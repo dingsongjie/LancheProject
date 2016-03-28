@@ -70,6 +70,7 @@ namespace Lanche.DynamicWebApi
         private void InitializeFilters(HttpConfiguration httpConfiguration)
         {
             httpConfiguration.Filters.Add(IocManager.Resolve<DynamicControllerExceptionFilterAttribute>());
+            httpConfiguration.Filters.Add(IocManager.Resolve<DefaultValidationAttribute>());
         }
 
         private static void InitializeFormatters(HttpConfiguration httpConfiguration)

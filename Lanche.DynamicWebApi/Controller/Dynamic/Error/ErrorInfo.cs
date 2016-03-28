@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.Http.ModelBinding;
 
 namespace Lanche.DynamicWebApi.Controller.Dynamic
 {
@@ -20,9 +21,11 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic
         /// 没有权限执行这个请求
         /// </summary>
         public bool UnAuthorizedRequest { get; set; }
+        public bool IsModelValidateError { get; set; }
+        public ModelStateDictionary ModelState { get; set; }
         public ErrorInfo()
         {
-            UnAuthorizedRequest = true;
+            UnAuthorizedRequest = false;
         }
     }
 }

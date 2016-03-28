@@ -28,7 +28,7 @@ namespace Lanche.DynamicWebApi.Controller.Filters
         {
             ErrorInfo _errorInfo = new ErrorInfo();
             _errorInfo.Exception = context.Exception;        
-            //context.Response = context.Request.CreateResponse(
+           // context.Response = context.Request.CreateResponse(
             //    HttpStatusCode.OK,
             //    new AjaxResponse(_errorInfo) 
             //    );

@@ -97,6 +97,7 @@
     <Compile Include="Controller\Dynamic\Selectors\DynamicApiControllerActionSelector.cs" />
     <Compile Include="Controller\Dynamic\Selectors\DynamicHttpControllerSelector.cs" />
     <Compile Include="Controller\Filters\DefaultAuthorizeAttribute.cs" />
+    <Compile Include="Controller\Filters\DefaultValidationAttribute.cs" />
     <Compile Include="Controller\Filters\DynamicControllerExceptionFilterAttribute.cs" />
     <Compile Include="Controller\Filters\Extensions\HttpRequestMessageExtensions.cs" />
     <Compile Include="DynamicWebApiModule.cs" />
