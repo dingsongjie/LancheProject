@@ -21,7 +21,7 @@ namespace Lanche.UnitOfWork
         public static bool IsConventionalUowClass(Type type)
         {
           
-            return typeof(IApplicationBiz).IsAssignableFrom(type);
+            return typeof(IApplicationService).IsAssignableFrom(type);
         }
 
        /// <summary>

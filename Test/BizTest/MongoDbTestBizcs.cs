@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace BizTest
 {
-    public class MongoDbTestBiz : ApplicationBizBase
+    public class MongoDbTestService : ApplicationServiceBase
     {
         private readonly IMongoDbRepository<Car> _carRepository;
         public IIocManager manager { get; set; }
-        public MongoDbTestBiz(IMongoDbRepository<Car> carRepository)
+        public MongoDbTestService(IMongoDbRepository<Car> carRepository)
         {
             this._carRepository = carRepository;
         }

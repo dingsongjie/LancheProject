@@ -48,7 +48,7 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic.Builders
         /// <param name="members">list </param>
         private static void FillMethodsWithoutObjectMethods(Type type, BindingFlags flags, List<MethodInfo> members)
         {
-            members.AddRange(type.GetMethods(flags).Where(m => m.DeclaringType != typeof(object) && m.DeclaringType != typeof(IApplicationBiz) && !IsPropertyAccessor(m)));
+            members.AddRange(type.GetMethods(flags).Where(m => m.DeclaringType != typeof(object) && m.DeclaringType != typeof(IApplicationService) && !IsPropertyAccessor(m)));
 
           
         }

@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace BizTest
 {
-    public class CacheTestBiz : ApplicationBizBase
+    public class CacheTestService : ApplicationServiceBase
     {
         private readonly ICacheManager cacheManager;
 
-        public CacheTestBiz(ICacheManager cacheManager)
+        public CacheTestService(ICacheManager cacheManager)
         {
             this.cacheManager = cacheManager;
             

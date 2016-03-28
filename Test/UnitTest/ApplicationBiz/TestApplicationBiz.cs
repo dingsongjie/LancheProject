@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace UnitTest.Test
 {
-    public class TestApplicationBiz : IApplicationBiz
+    public class TestApplicationBiz : IApplicationService
     {
         private readonly IEfRepository<Students> _studentRepository;
         private readonly IUnitOfWorkManager _uowManger;

@@ -105,21 +105,21 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic.Builders
         {
             var typeName = type.Name;
 
-            if (typeName.EndsWith("ApplicationBiz"))
+            if (typeName.EndsWith("ApplicationService"))
             {
-                typeName = typeName.Substring(0, typeName.Length - "ApplicationBiz".Length);
+                typeName = typeName.Substring(0, typeName.Length - "ApplicationService".Length);
             }
-            else if (typeName.EndsWith("AppBiz"))
+            else if (typeName.EndsWith("AppService"))
             {
-                typeName = typeName.Substring(0, typeName.Length - "AppBiz".Length);
+                typeName = typeName.Substring(0, typeName.Length - "AppService".Length);
             }
-            else if (typeName.EndsWith("Biz"))
+            else if (typeName.EndsWith("Service"))
             {
-                typeName = typeName.Substring(0, typeName.Length - "Biz".Length);
+                typeName = typeName.Substring(0, typeName.Length - "Service".Length);
             }
             else
             {
-                throw new Exception("biz 的命名不符合规范");
+                throw new Exception("服务的命名不符合规范");
             }
 
             return typeName;

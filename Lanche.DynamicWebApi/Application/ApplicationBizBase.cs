@@ -8,7 +8,7 @@ using System.Web.Http.Controllers;
 
 namespace Lanche.DynamicWebApi.Application
 {
-    public class ApplicationBizBase:IApplicationBiz,IHttpController
+    public class ApplicationServiceBase:IApplicationService,IHttpController
     {
         public Task<System.Net.Http.HttpResponseMessage> ExecuteAsync(HttpControllerContext controllerContext, System.Threading.CancellationToken cancellationToken)
         {

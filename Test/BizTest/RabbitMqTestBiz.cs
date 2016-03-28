@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace BizTest
 {
-    public class RabbitMqTestBiz : ApplicationBizBase
+    public class RabbitMqTestService : ApplicationServiceBase
     {
         private readonly IMessageQueryManager _manager;
        
-        public RabbitMqTestBiz(IMessageQueryManager manager)
+        public RabbitMqTestService(IMessageQueryManager manager)
         {
             this._manager = manager;
             

@@ -26,7 +26,7 @@ namespace BizTest
     {
         public override void Initialize()
         {
-            DynamicApiControllerBuilder.ForAll<ApplicationBizBase>(Assembly.GetExecutingAssembly(), "test").Build();
+            DynamicApiControllerBuilder.ForAll<ApplicationServiceBase>(Assembly.GetExecutingAssembly(), "test").Build();
           
            
             

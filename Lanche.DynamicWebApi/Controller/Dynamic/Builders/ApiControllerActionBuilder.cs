@@ -15,6 +15,7 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic.Builders
     /// <typeparam name="T"></typeparam>
     internal class ApiControllerActionBuilder<T> : IApiControllerActionBuilder<T> 
     {
+        
        /// <summary>
        /// action 名称
        /// </summary>
@@ -89,6 +90,7 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic.Builders
         public void Build()
         {
             _controllerBuilder.Build();
+            
         }
 
        /// <summary>

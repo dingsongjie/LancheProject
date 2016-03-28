@@ -20,14 +20,14 @@ namespace UnitTest
 
     
     //localhost://api/services/test/test/
-    public class TestApplicationBiz : ApplicationBizBase
+    public class TestApplicationService : ApplicationServiceBase
     {
         private readonly IEfRepository<Students> _studentRepository;
         private readonly IUnitOfWorkManager _uowManger;
         private readonly ILogger _logger;
         public  IPagingRequestEntitySlover Slover { get; set; }
 
-        public TestApplicationBiz(IEfRepository<Students> studentRepository, IUnitOfWorkManager uowManger,ILogger logger)
+        public TestApplicationService(IEfRepository<Students> studentRepository, IUnitOfWorkManager uowManger,ILogger logger)
         {
             _studentRepository = studentRepository;
             _uowManger = uowManger;
@@ -96,7 +96,7 @@ namespace UnitTest
         }
         public virtual int SqlQuery(string sql)
         {
-            return _studentRepository.SqlQuery<int>(sql).ToList()[0];
+            return _studentRepository.GetDatebase().SqlQuery<int>(sql).ToList()[0];
         }
 
         [UnitOfWork(isTransactional: true)]

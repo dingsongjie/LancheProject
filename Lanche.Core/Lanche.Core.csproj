@@ -80,7 +80,7 @@
     <Compile Include="Dependency\IIocManager.cs" />
     <Compile Include="Dependency\IocManager.cs" />
     <Compile Include="Dependency\ISingleDependency.cs" />
-    <Compile Include="Dependency\IMultipleDependency.cs" />
+    <Compile Include="Dependency\ITransientDependency.cs" />
     <Compile Include="Module\DefaultModuleFinder.cs" />
     <Compile Include="Module\DefaultModuleManager.cs" />
     <Compile Include="Module\DependsOnAttribute.cs" />

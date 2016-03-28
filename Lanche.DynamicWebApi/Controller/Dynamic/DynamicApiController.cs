@@ -12,15 +12,15 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic
     /// 动态 controller
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class DynamicApiController<T> : ApiController, IDynamicApiController 
+    public class DynamicApiController<T> : ApiController 
     {
         /// <summary>
         /// 内部 biz
         /// </summary>
-        public T Biz { get; set; }
+        public T ApplicationServices { get; set; }
         public DynamicApiController()
         {
-            Biz = IocManager.Instance.Resolve<T>();
+            ApplicationServices = IocManager.Instance.Resolve<T>();
         }
 
     }
