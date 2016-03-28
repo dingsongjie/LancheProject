@@ -56,13 +56,14 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic.Selectors
          /// <param name="controllerInfo"></param>
          /// <param name="actionName"></param>
          /// <returns></returns>
-        private static HttpActionDescriptor GetActionByActionName(HttpControllerContext controllerContext, DynamicApiControllerInfo controllerInfo, string actionName)
+        private  HttpActionDescriptor GetActionByActionName(HttpControllerContext controllerContext, DynamicApiControllerInfo controllerInfo, string actionName)
         {
            
             DynamicApiActionInfo actionInfo;
             if (!controllerInfo.Actions.TryGetValue(actionName, out actionInfo))
             {
-                throw new Exception("请求路径有误,名称为" + actionName+" 的 action 并没有 在 该 controllerinfo 里的 actioninfo 集合中");
+                return base.SelectAction(controllerContext);
+       
             }
             return new DynamicHttpActionDescriptor(controllerContext.ControllerDescriptor, actionInfo.Method, actionInfo.Filters);
         }

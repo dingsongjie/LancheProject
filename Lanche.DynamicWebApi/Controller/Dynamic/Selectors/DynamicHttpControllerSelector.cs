@@ -75,6 +75,7 @@ namespace Lanche.DynamicWebApi.Controller.Dynamic.Selectors
             if (controllerInfo == null)
             {
                 return base.SelectController(request);
+                
             }
          
             var controllerDescriptor = new DynamicHttpControllerDescriptor(_configuration, controllerInfo.ServiceName, controllerInfo.ApiControllerType, controllerInfo.Filters);
